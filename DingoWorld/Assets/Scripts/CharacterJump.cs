@@ -11,7 +11,8 @@ public class CharacterJump : MonoBehaviour {
 	public float lowJumpMultiplier = 2f;
 	public float jumpVelocity= 2f;
 	private bool holdingjump;
-	private float GroundCheckDistance = 0.3f;
+	
+	public  float GroundCheckDistance = 1.1f;
 
 	
     public bool grounded =true;
@@ -25,6 +26,7 @@ public class CharacterJump : MonoBehaviour {
 
 		holdingjump = Input.GetButton("Jump");
 		
+		CheckGroundStatus();
 	}
 
 	void FixedUpdate()
@@ -41,18 +43,21 @@ public class CharacterJump : MonoBehaviour {
 	void checkFirstJump()
 	{
 		if (holdingjump)
-			thisRigidbody.velocity = Vector3.up * jumpVelocity;
+			thisRigidbody.velocity =new Vector3(thisRigidbody.velocity.x,  jumpVelocity,thisRigidbody.velocity.z);
 
-		if (thisRigidbody.velocity.y < 0)
+		if (thisRigidbody.velocity.y < 0 && !grounded && thisRigidbody.velocity.y !=0)
 		{ 
 
 			thisRigidbody.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 
+			//thisRigidbody.velocity = new Vector3 (thisRigidbody.velocity.x, Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime, thisRigidbody.velocity.z);
+
 		}
-		else if (thisRigidbody.velocity.y > 0 && !holdingjump)
+		else if (thisRigidbody.velocity.y > 0 && !holdingjump && !grounded && thisRigidbody.velocity.y !=0 )
 		{
 
 			thisRigidbody.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+			//thisRigidbody.velocity = new Vector3 (thisRigidbody.velocity.x,  Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime, thisRigidbody.velocity.z);
 
 		}
 
