@@ -1,8 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\CharacterJump.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CameraController.cs">
     <Files>
-      <File FileName="Assets\Scripts\CharacterJump.cs" Line="42" Column="2" />
+      <File FileName="Assets/Scripts/MenuControl.cs" Line="58" Column="3" />
+      <File FileName="Assets/Scripts/SoundManager.cs" Line="79" Column="43" />
+      <File FileName="Assets/Scripts/WorldGenerator.cs" Line="61" Column="15" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="52" Column="63" />
+      <File FileName="Assets/Scripts/CameraController.cs" Line="34" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
