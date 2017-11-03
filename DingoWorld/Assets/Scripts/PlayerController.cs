@@ -20,7 +20,7 @@ public CharacterController controller;
 	public Transform pivot;
 	public float rotateSpeed;
 	public GameObject playerModel;
-	
+	public Animator anim;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
@@ -56,6 +56,10 @@ public CharacterController controller;
 			playerModel.transform.rotation=Quaternion.Slerp(playerModel.transform.rotation,newRotation,rotateSpeed *Time.deltaTime);
 			
 		}
+
+
+		anim.SetBool ("Grounded", controller.isGrounded);
+		anim.SetFloat ("Speed", Mathf.Abs(Input.GetAxis("Vertical"))+  Mathf.Abs(Input.GetAxis("Horizontal")) );
 		
 	}
 	
