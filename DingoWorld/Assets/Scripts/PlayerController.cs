@@ -43,6 +43,8 @@ public CharacterController controller;
 				
 				moveDirection.y=jumpForce;
 			}
+
+			anim.SetBool ("Fall", false);
 		}
 		
 		moveDirection.y=moveDirection.y +(Physics.gravity.y*gravityScale*Time.deltaTime);
