@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-public float moveSpeed;
-//public Rigidbody thisRigidbody;
-public float jumpForce;
+	public float moveSpeed;
+	public float jumpForce;
+	public float SecondJumpForce;
+	public float ThirdJumpForce;
+	public float jumpwindowTime;
+	public float jumptimer;
 
-public CharacterController controller;
+	public CharacterController controller;
 	
 	private Vector3 moveDirection;
 	public float gravityScale;
-	
+	private float forceY;
+	private float invertGrav; 
+	public float gravity = 20.0F;
+	public float airTime = 2f;
+	private bool landed;
+	private bool recentlyJumped;
+	public int nJump;
 	
     private Transform camTransform;
 	
@@ -39,16 +48,46 @@ public CharacterController controller;
 				
 		//moveDirection=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, moveDirection.y,Input.GetAxis("Vertical")*moveSpeed);
 		float yAux=moveDirection.y;
-		if (!isWalljumping)
+		if (!isWalljumping && !anim.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
 			moveDirection= (transform.forward *Input.GetAxis("Vertical") )+(transform.right *Input.GetAxis("Horizontal") );
 		moveDirection=moveDirection.normalized*moveSpeed;
 		moveDirection.y=yAux;
 		if(controller.isGrounded){
 			moveDirection.y=0f;
 			isWalljumping = false;
+			forceY = 0f;
+			invertGrav = gravity * airTime;
 			if (Input.GetButtonDown("Jump")){
-				
-				moveDirection.y=jumpForce;
+					
+
+				if (Mathf.Abs (controller.velocity.x) == 0 && Mathf.Abs (controller.velocity.z) == 0) {
+					nJump = 1;
+				}
+			
+
+				if (nJump != 3 && recentlyJumped) {
+					nJump++;
+				}
+				else {
+					nJump = 1;
+				}
+					
+
+				//moveDirection.y=jumpForce;
+				switch (nJump){
+				case 1:
+					forceY = jumpForce;
+					break;
+				case 2:
+					forceY = SecondJumpForce;
+					break;
+				case 3:
+					forceY = ThirdJumpForce;
+					break;
+				}
+				recentlyJumped = true;
+				jumptimer = jumpwindowTime;
+
 			}
 
 			anim.SetBool ("Fall", false);
@@ -56,7 +95,14 @@ public CharacterController controller;
 			isOnWall = false;
 			anim.SetBool ("WallJump", false);
 		}
-		moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
+
+		//hold jump
+		if(Input.GetKey(KeyCode.Space) && forceY != 0 && nJump==1){
+			invertGrav -= Time.deltaTime;
+			forceY += invertGrav*Time.deltaTime;
+		} 
+
+		//moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
 		/*if (!isOnWall)
 			moveDirection.y = moveDirection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
 		else {
@@ -65,6 +111,11 @@ public CharacterController controller;
 				moveDirection.y = (Physics.gravity.y * (gravityScale / 4) * Time.deltaTime);
 			}
 		}*/
+
+
+		forceY -= gravity*Time.deltaTime* gravityScale;
+		moveDirection.y = forceY;
+
 		controller.Move(moveDirection*Time.deltaTime);
 		
 		//Rotate to camera
@@ -83,6 +134,21 @@ public CharacterController controller;
 
 
 		anim.SetBool ("OnWall", isOnWall);
+
+
+
+
+
+		if (recentlyJumped) {
+		
+			jumptimer -= Time.deltaTime;
+			if (jumptimer < 0) {
+				recentlyJumped = false;
+			}
+		
+		}
+
+
 	}
 	
 	private void OnControllerColliderHit (ControllerColliderHit hit)
