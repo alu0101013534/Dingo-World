@@ -60,12 +60,20 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetButtonDown("Jump")){
 					
 
-				if (Mathf.Abs (controller.velocity.x) == 0 && Mathf.Abs (controller.velocity.z) == 0) {
+
+				if ( (Mathf.Abs (controller.velocity.x) == 0 && Mathf.Abs (controller.velocity.z) == 0)) {
 					nJump = 1;
-				}
+				} 
 			
 
-				if (nJump != 3 && recentlyJumped) {
+
+				if (!landed)
+					nJump = 0;
+				
+				recentlyJumped = true;
+				jumptimer = jumpwindowTime;
+
+				if (nJump != 3 && landed) {
 					nJump++;
 				}
 				else {
@@ -85,9 +93,6 @@ public class PlayerController : MonoBehaviour {
 					forceY = ThirdJumpForce;
 					break;
 				}
-				recentlyJumped = true;
-				jumptimer = jumpwindowTime;
-
 			}
 
 			anim.SetBool ("Fall", false);
@@ -135,19 +140,34 @@ public class PlayerController : MonoBehaviour {
 
 		anim.SetBool ("OnWall", isOnWall);
 
-
+		anim.SetInteger ("Jump", nJump);
 
 
 
 		if (recentlyJumped) {
-		
-			jumptimer -= Time.deltaTime;
-			if (jumptimer < 0) {
+
+			if (controller.isGrounded) {
+				landed = true;
 				recentlyJumped = false;
+
 			}
+
+
 		
 		}
 
+
+		if (landed) {
+
+			jumptimer -= Time.deltaTime;
+			if (jumptimer < 0) {
+				landed = false;
+
+			}
+
+
+
+		}
 
 	}
 	
