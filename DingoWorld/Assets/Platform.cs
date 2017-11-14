@@ -5,9 +5,13 @@ using UnityEngine;
 public class Platform : MonoBehaviour {
 
 
-	public List<GameObject> Prevs;
+	public List<GameObject> Prevs_Up;
+	public List<GameObject> Prevs_Front;
+	public List<GameObject> Prevs_Down;
 
-	public List<GameObject> Nexts;
+	public List<GameObject> Nexts_Up;
+	public List<GameObject> Nexts_Front;
+	public List<GameObject> Nexts_Down;
 
 	// Use this for initialization
 	void Start () {

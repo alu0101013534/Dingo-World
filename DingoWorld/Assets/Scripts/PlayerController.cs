@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour {
 			//anim.SetBool ("OnWall", false);
 			isOnWall = false;
 			anim.SetBool ("WallJump", false);
+
 		}
 
 		//hold jump
@@ -170,6 +171,9 @@ public class PlayerController : MonoBehaviour {
 
 
 		}
+
+
+
 
 	}
 	
