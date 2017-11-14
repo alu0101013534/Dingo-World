@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
 	public float jumpForce;
 	public float SecondJumpForce;
 	public float ThirdJumpForce;
+	public float walljumpForce;
 	public float jumpwindowTime;
 	public float jumptimer;
 
@@ -48,9 +49,10 @@ public class PlayerController : MonoBehaviour {
 				
 		//moveDirection=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, moveDirection.y,Input.GetAxis("Vertical")*moveSpeed);
 		float yAux=moveDirection.y;
-		if (!isWalljumping && !anim.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
-			moveDirection= (transform.forward *Input.GetAxis("Vertical") )+(transform.right *Input.GetAxis("Horizontal") );
-		moveDirection=moveDirection.normalized*moveSpeed;
+		if (!isWalljumping && !anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact")) {
+			moveDirection = (transform.forward * Input.GetAxis ("Vertical")) + (transform.right * Input.GetAxis ("Horizontal"));
+			moveDirection = moveDirection.normalized * moveSpeed;
+		}
 		moveDirection.y=yAux;
 		if(controller.isGrounded){
 			moveDirection.y=0f;
@@ -189,7 +191,8 @@ public class PlayerController : MonoBehaviour {
 				Debug.DrawRay (hit.point, hit.normal, Color.red, 1.25f);
 				moveDirection = hit.normal * walljumpSpeed;
 
-				moveDirection.y=jumpForce;
+
+				forceY = walljumpForce;
 
 
 			}
