@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 	private bool landed;
 	private bool recentlyJumped;
 	public int nJump;
+    private bool ps4Controller = false;
 	
     private Transform camTransform;
 	
@@ -44,14 +45,33 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//thisRigidbody.velocity=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, thisRigidbody.velocity.y,Input.GetAxis("Vertical")*moveSpeed);
-		
+        //thisRigidbody.velocity=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, thisRigidbody.velocity.y,Input.GetAxis("Vertical")*moveSpeed);
+        
+        string[] names = Input.GetJoystickNames();
+        for(int x = 0; x < names.Length; x++)
+        {
+            if (names[x].Length == 19)
+            {
+                ps4Controller = true;
+                break;
+            }
+        }
+        
 				
 		//moveDirection=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, moveDirection.y,Input.GetAxis("Vertical")*moveSpeed);
 		float yAux=moveDirection.y;
 		if (!isWalljumping && !anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact")) {
-			moveDirection = (transform.forward * Input.GetAxis ("Vertical")) + (transform.right * Input.GetAxis ("Horizontal"));
-			moveDirection = moveDirection.normalized * moveSpeed;
+            if (ps4Controller)
+            {
+                moveDirection = (transform.forward * Input.GetAxis("PS4_LeftAnalogVertical")) + (transform.right * Input.GetAxis("PS4_LeftAnalogHorizontal"));
+
+            }
+            else
+            {
+                moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+
+            }
+            moveDirection = moveDirection.normalized * moveSpeed;
 		}
 		moveDirection.y=yAux;
 		if(controller.isGrounded){
@@ -59,7 +79,7 @@ public class PlayerController : MonoBehaviour {
 			isWalljumping = false;
 			forceY = 0f;
 			invertGrav = gravity * airTime;
-			if (Input.GetButtonDown("Jump")){
+			if (Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump")){
 					
 
 
@@ -105,7 +125,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//hold jump
-		if(Input.GetKey(KeyCode.Space) && forceY != 0 && nJump==1){
+		if((Input.GetButton("PS4_X") || Input.GetKey(KeyCode.Space)) && forceY != 0 && nJump==1){
 			invertGrav -= Time.deltaTime;
 			forceY += invertGrav*Time.deltaTime;
 		} 
@@ -127,7 +147,8 @@ public class PlayerController : MonoBehaviour {
 		controller.Move(moveDirection*Time.deltaTime);
 		
 		//Rotate to camera
-		if(Input.GetAxis("Vertical")!=0 || Input.GetAxis("Horizontal")!=0){
+		if(Input.GetAxis("PS4_LeftAnalogVertical")!=0 || Input.GetAxis("PS4_LeftAnalogHorizontal")!=0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
 			
 			transform.rotation=Quaternion.Euler(0f,pivot.rotation.eulerAngles.y,0f);
 			Quaternion newRotation=Quaternion.LookRotation(new Vector3(moveDirection.x,0f,moveDirection.z));
@@ -137,7 +158,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		anim.SetBool ("Grounded", controller.isGrounded);
-		anim.SetFloat ("Speed", Mathf.Abs(Input.GetAxis("Vertical"))+  Mathf.Abs(Input.GetAxis("Horizontal")) );
+		anim.SetFloat ("Speed", Mathf.Abs(controller.velocity.x)+  Mathf.Abs(controller.velocity.y));
 
 
 
@@ -173,7 +194,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
-
+        ps4Controller = false;
 
 	}
 	
@@ -187,7 +208,7 @@ public class PlayerController : MonoBehaviour {
 			isOnWall=true;
 
 			anim.SetBool ("WallJump", false);
-			if(Input.GetButtonDown("Jump"))
+			if(Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump"))
 			{
 				anim.SetBool ("WallJump", true);
 				isOnWall=false;
