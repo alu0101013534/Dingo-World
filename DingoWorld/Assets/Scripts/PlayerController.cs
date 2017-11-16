@@ -53,6 +53,9 @@ public class PlayerController : MonoBehaviour {
 			moveDirection = (transform.forward * Input.GetAxis ("Vertical")) + (transform.right * Input.GetAxis ("Horizontal"));
 			moveDirection = moveDirection.normalized * moveSpeed;
 		}
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact")) {
+			moveDirection = new Vector3 (0, 0, 0);
+		}
 		moveDirection.y=yAux;
 		if(controller.isGrounded){
 			moveDirection.y=0f;
