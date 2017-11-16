@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour {
 	public bool isWalljumping;
 	public bool isOnWall;
 	public float wallFallSpeed;
+	private bool isDead;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
 		//thisRigidbody.velocity=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, thisRigidbody.velocity.y,Input.GetAxis("Vertical")*moveSpeed);
 		
 				
@@ -53,7 +55,7 @@ public class PlayerController : MonoBehaviour {
 			moveDirection = (transform.forward * Input.GetAxis ("Vertical")) + (transform.right * Input.GetAxis ("Horizontal"));
 			moveDirection = moveDirection.normalized * moveSpeed;
 		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact")) {
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact") || isDead) {
 			moveDirection = new Vector3 (0, 0, 0);
 		}
 		moveDirection.y=yAux;
@@ -210,6 +212,15 @@ public class PlayerController : MonoBehaviour {
 
 	void OnCollisionExit(Collision collisionInfo) {
 		Debug.Log("No longer in contact with " + collisionInfo.transform.name);
+	}
+
+	public void death(){
+		isDead = true;
+
+
+		anim.SetBool ("Death", isDead);
+
+		//wait respawn 
 	}
 
 }
