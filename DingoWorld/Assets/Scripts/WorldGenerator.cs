@@ -4,54 +4,64 @@ using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour {
 
-    private int rotation;
     public float turnRate;
+    public int seed;
     
 	public int length;
     public List<GameObject> startPlatforms;
     public List<GameObject> finalPlatforms;
     public List<GameObject> platforms;
     public List<float> probabilities;
+    private int rotation;
 
     public void Start ()
     {
         rotation = 0;
+        if (seed != 0)
+            Random.InitState(seed);
         GenerateMap();
     }
 
     private void GenerateMap()
     {
         GameObject current = GetRandomCopy(startPlatforms);
-        current.transform.position = Vector3.zero;
-        current.transform.SetParent(this.transform);
 
         for (int i = 0; i < length; ++i)
         {
             GameObject next = GetRandomCopy(platforms, probabilities);
-            next.transform.position = Vector3.zero;
-            next.transform.SetParent(this.transform);
             AddNext(current, next);
             current = next;
         }
+        
+        GameObject final = GetRandomCopy(finalPlatforms);
+        AddNext(current, final);
     }
 
     private GameObject GetRandomCopy(List<GameObject> list, List<float> probabilities = null)
     {
+        GameObject instance;
         if (probabilities == null)
-            return Instantiate(list[(int) Random.Range(0, list.Count)]);
-        
-        float currentMax = 0;
-        float random = Random.Range(0f, 1f);
-        int index;
-        
-        for (index = 0; (index < probabilities.Count); ++index)
         {
-            currentMax += probabilities[index];
-            if (random < currentMax)
-                break;
-        }        
+            instance = Instantiate(list[(int) Random.Range(0, list.Count)]);   
+        }
+        else
+        {
+            float currentMax = 0;
+            float random = Random.Range(0f, 1f);
+            int index;
         
-        return Instantiate(list[index]);
+            for (index = 0; (index < probabilities.Count); ++index)
+            {
+                currentMax += probabilities[index];
+                if (random < currentMax)
+                    break;
+            }        
+        
+            instance = Instantiate(list[index]);   
+        }
+        instance.transform.position = Vector3.zero;
+        instance.transform.SetParent(this.transform);
+        return instance;
     }
 
     private void AddNext(GameObject current, GameObject next)

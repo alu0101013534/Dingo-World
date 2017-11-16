@@ -65,7 +65,7 @@ MonoBehaviour:
     height: 30
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: 2 by 3
+  m_LastLoadedLayoutName: 
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 74
+  controlID: 87
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 160
+  controlID: 10
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -289,9 +289,9 @@ MonoBehaviour:
     height: 654
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 1c580000
-    m_LastClickedID: 22556
-    m_ExpandedIDs: 7232ffff7240ffffd241ffff6c43ffff4c51ffffe46dffff5a87ffff8c87ffffe497ffff00000000
+    m_SelectedIDs: aa2e0000
+    m_LastClickedID: 11946
+    m_ExpandedIDs: 34f8ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -395,9 +395,9 @@ MonoBehaviour:
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: a23c0000
-    m_LastClickedID: 15522
-    m_ExpandedIDs: 00000000983c0000543e00008a3e00008e3e00001c4800001e4800002048000000ca9a3bffffff7f
+    m_SelectedIDs: 58280000
+    m_LastClickedID: 10328
+    m_ExpandedIDs: 0000000042280000662c0000022d0000122d0000d82e0000da2e0000dc2e000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -425,7 +425,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000983c0000d03c0000703d0000543e00008a3e00008e3e0000d23e0000f63e00001c4800001e48000020480000
+    m_ExpandedIDs: 0000000042280000662c0000022d0000122d0000d82e0000da2e0000dc2e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -452,7 +452,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -617,9 +617,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
-    m_Target: 74.72147
+    m_Target: 68.940155
     speed: 2
-    m_Value: 74.72147
+    m_Value: 68.940155
   m_Ortho:
     m_Target: 0
     speed: 2

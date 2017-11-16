@@ -225,7 +225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnRate: 0
-  length: 20
+  seed: 0
+  length: 5
   startPlatforms:
   - {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
   finalPlatforms:
