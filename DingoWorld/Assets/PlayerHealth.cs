@@ -21,8 +21,12 @@ public class PlayerHealth : MonoBehaviour {
 
 
 	public void DamagePlayer(int damage){
-		currentHealth--;
+		currentHealth-=damage;
 		if (currentHealth == 0)
 			pc.death ();
+	}
+	public void HealPlayer(int heal){
+		currentHealth+=heal;
+
 	}
 }

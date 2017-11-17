@@ -37,10 +37,14 @@ public class PlayerController : MonoBehaviour {
 	public bool isOnWall;
 	public float wallFallSpeed;
 	private bool isDead;
+	public float deathtimer;
+	private Vector3 respawnpoint;
+	private int lives=3;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
 		controller=GetComponent<CharacterController>();
+		respawnpoint = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -177,9 +181,19 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
+		if (isDead && lives > 0) {
+			deathtimer -= Time.deltaTime;
+			if (deathtimer < 0) {
+				Respawn ();
+				deathtimer = 3f;
+
+			}
+		}
 
 
 
+
+		anim.SetBool ("Death", isDead);
 	}
 	
 	private void OnControllerColliderHit (ControllerColliderHit hit)
@@ -217,10 +231,27 @@ public class PlayerController : MonoBehaviour {
 	public void death(){
 		isDead = true;
 
+		lives--;
+		if (lives != 0) {
+			//gameover
+		} 
 
-		anim.SetBool ("Death", isDead);
+
+
 
 		//wait respawn 
 	}
+
+
+	void Respawn(){
+
+		isDead = false;
+		transform.position = respawnpoint;
+
+
+		gameObject.GetComponent<PlayerHealth> ().HealPlayer(1);
+	}
+
+
 
 }
