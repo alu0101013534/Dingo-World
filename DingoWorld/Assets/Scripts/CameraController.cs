@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,8 +10,14 @@ public class CameraController : MonoBehaviour {
 	public bool useOffsetValues;
 	public float rotateSpeed;
     public bool ps4Controller = false;
+	
+	public Transform pivot;
 
-    public Transform pivot;
+
+	public float maxAngle;
+	public float minAngle;
+
+	public bool invertY;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +30,8 @@ public class CameraController : MonoBehaviour {
 		//pivot.transform.parent=target.transform;
 		
 		pivot.transform.parent=null;
+
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -53,6 +61,8 @@ public class CameraController : MonoBehaviour {
             horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
         }
 		
+		pivot.transform.position=target.transform.position;
+		//get x position of the mouse and rotate
 		pivot.Rotate(0,horizontal,0);
         //get y position of the mouse and rotate
 
@@ -66,10 +76,27 @@ public class CameraController : MonoBehaviour {
             vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
         }
         
-		pivot.Rotate(-vertical,0,0);
+		//get y position of the mouse and rotate
+
+
+		if (invertY) {
+			pivot.Rotate (vertical, 0, 0);
 		
-		
-		
+		} else {
+			pivot.Rotate (-vertical, 0, 0);
+		}
+
+	
+		//limit rotation
+		if(pivot.rotation.eulerAngles.x > maxAngle && pivot.rotation.eulerAngles.x <180f){
+
+			pivot.rotation = Quaternion.Euler (maxAngle, 0, 0);
+		}
+		if(pivot.rotation.eulerAngles.x  < 360f + minAngle && pivot.rotation.eulerAngles.x >180f){
+
+			pivot.rotation = Quaternion.Euler (360f+minAngle, 0, 0);
+		}
+
 		
 		//Move the camera based on the current rotation 
 		

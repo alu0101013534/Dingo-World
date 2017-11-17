@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -37,10 +37,15 @@ public class PlayerController : MonoBehaviour {
 	public bool isWalljumping;
 	public bool isOnWall;
 	public float wallFallSpeed;
+	private bool isDead;
+	public float deathtimer;
+	private Vector3 respawnpoint;
+	public int lives=3;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
 		controller=GetComponent<CharacterController>();
+		respawnpoint = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -72,6 +77,9 @@ public class PlayerController : MonoBehaviour {
 
             }
             moveDirection = moveDirection.normalized * moveSpeed;
+		}
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact") || isDead) {
+			moveDirection = new Vector3 (0, 0, 0);
 		}
 		moveDirection.y=yAux;
 		if(controller.isGrounded){
@@ -193,9 +201,21 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
+		if (isDead && lives > 0) {
+			deathtimer -= Time.deltaTime;
+			if (deathtimer < 0) {
+				Respawn ();
+				deathtimer = 3f;
 
-        ps4Controller = false;
+			}
+		}
 
+
+
+
+		anim.SetBool ("Death", isDead);
+
+		ps4Controller = false;
 	}
 	
 	private void OnControllerColliderHit (ControllerColliderHit hit)
@@ -229,5 +249,31 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionExit(Collision collisionInfo) {
 		Debug.Log("No longer in contact with " + collisionInfo.transform.name);
 	}
+
+	public void death(){
+		isDead = true;
+
+		lives--;
+		if (lives != 0) {
+			//gameover
+		} 
+
+
+
+
+		//wait respawn 
+	}
+
+
+	void Respawn(){
+
+		isDead = false;
+		transform.position = respawnpoint;
+
+
+		gameObject.GetComponent<PlayerHealth> ().HealPlayer(1);
+	}
+
+
 
 }
