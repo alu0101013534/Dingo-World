@@ -86,7 +86,7 @@ public class WorldGenerator : MonoBehaviour {
     private bool AddNext(GameObject current, GameObject next)
     {
         int newRotation = RandomRotation();
-        next.transform.Rotate(new Vector3(0f, newRotation, 0f));
+        next.transform.Rotate(new Vector3(0f, newRotation, 0f), Space.World);
         var nexts = new Connection(current, Connection.Type.NEXTS, rotation);
         var prevs = new Connection(next,    Connection.Type.PREVS, newRotation);
 
@@ -103,7 +103,8 @@ public class WorldGenerator : MonoBehaviour {
         
         if (actions.Count == 0)
         {
-            Debug.Log("No combination found [" + current.transform.name + " (" + rotation.ToString() + ") + " + next.transform.name + " (" + newRotation.ToString() + ")]");
+            //Debug.Log("No combination found [" + current.transform.name + " (" + rotation.ToString() + ") + " + next.transform.name + " (" + newRotation.ToString() + ")]");
+            Destroy(next);
             return false;
         }
         
