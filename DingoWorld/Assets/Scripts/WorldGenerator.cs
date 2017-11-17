@@ -32,6 +32,7 @@ public class WorldGenerator : MonoBehaviour {
     /* Genera el mapa */
     private void GenerateMap()
     {
+        Time.timeScale = 0f;
         // First platform
         StartGenerator();
         GameObject current = GetRandomCopy(startPlatforms);
@@ -52,6 +53,7 @@ public class WorldGenerator : MonoBehaviour {
         {
             next = GetRandomCopy(finalPlatforms);
         } while (!AddNext(current, next));
+        Time.timeScale = 1f;
     }
     
     /* Devuelve una instancia nueva de una lista de prefabs. De acuerdo a una lista de probabilidades si la hubiera */
