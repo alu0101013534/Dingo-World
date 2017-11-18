@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour {
 	public float jumptimer;
 
 	public CharacterController controller;
-	
+
 	private Vector3 moveDirection;
 	public float gravityScale;
 	private float forceY;
@@ -23,10 +23,11 @@ public class PlayerController : MonoBehaviour {
 	private bool landed;
 	private bool recentlyJumped;
 	public int nJump;
-	
-    private Transform camTransform;
-	
-	
+	private bool ps4Controller = false;
+
+	private Transform camTransform;
+
+
 	public Transform pivot;
 	public float rotateSpeed;
 	public GameObject playerModel;
@@ -36,22 +37,49 @@ public class PlayerController : MonoBehaviour {
 	public bool isWalljumping;
 	public bool isOnWall;
 	public float wallFallSpeed;
+	private bool isDead;
+	public float deathtimer;
+	private Vector3 respawnpoint;
+	public int lives=3;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
 		controller=GetComponent<CharacterController>();
+		respawnpoint = transform.position;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		//thisRigidbody.velocity=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, thisRigidbody.velocity.y,Input.GetAxis("Vertical")*moveSpeed);
-		
-				
+
+		string[] names = Input.GetJoystickNames();
+		for(int x = 0; x < names.Length; x++)
+		{
+			if (names[x].Length == 19)
+			{
+				ps4Controller = true;
+				break;
+			}
+		}
+
+
 		//moveDirection=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, moveDirection.y,Input.GetAxis("Vertical")*moveSpeed);
 		float yAux=moveDirection.y;
 		if (!isWalljumping && !anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact")) {
-			moveDirection = (transform.forward * Input.GetAxis ("Vertical")) + (transform.right * Input.GetAxis ("Horizontal"));
+			if (ps4Controller)
+			{
+				moveDirection = (transform.forward * Input.GetAxis("PS4_LeftAnalogVertical")) + (transform.right * Input.GetAxis("PS4_LeftAnalogHorizontal"));
+
+			}
+			else
+			{
+				moveDirection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+
+			}
 			moveDirection = moveDirection.normalized * moveSpeed;
+		}
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact") || isDead) {
+			moveDirection = new Vector3 (0, 0, 0);
 		}
 		moveDirection.y=yAux;
 		if(controller.isGrounded){
@@ -59,19 +87,19 @@ public class PlayerController : MonoBehaviour {
 			isWalljumping = false;
 			forceY = 0f;
 			invertGrav = gravity * airTime;
-			if (Input.GetButtonDown("Jump")){
-					
+			if (Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump")){
+
 
 
 				if ( (Mathf.Abs (controller.velocity.x) == 0 && Mathf.Abs (controller.velocity.z) == 0)) {
 					nJump = 1;
 				} 
-			
+
 
 
 				if (!landed)
 					nJump = 0;
-				
+
 				recentlyJumped = true;
 				jumptimer = jumpwindowTime;
 
@@ -81,7 +109,7 @@ public class PlayerController : MonoBehaviour {
 				else {
 					nJump = 1;
 				}
-					
+
 
 				//moveDirection.y=jumpForce;
 				switch (nJump){
@@ -105,7 +133,7 @@ public class PlayerController : MonoBehaviour {
 		}
 
 		//hold jump
-		if(Input.GetKey(KeyCode.Space) && forceY != 0 && nJump==1){
+		if((Input.GetButton("PS4_X") || Input.GetKey(KeyCode.Space)) && forceY != 0 && nJump==1){
 			invertGrav -= Time.deltaTime;
 			forceY += invertGrav*Time.deltaTime;
 		} 
@@ -125,19 +153,20 @@ public class PlayerController : MonoBehaviour {
 		moveDirection.y = forceY;
 
 		controller.Move(moveDirection*Time.deltaTime);
-		
+
 		//Rotate to camera
-		if(Input.GetAxis("Vertical")!=0 || Input.GetAxis("Horizontal")!=0){
-			
+		if(Input.GetAxis("PS4_LeftAnalogVertical")!=0 || Input.GetAxis("PS4_LeftAnalogHorizontal")!=0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+		{
+
 			transform.rotation=Quaternion.Euler(0f,pivot.rotation.eulerAngles.y,0f);
 			Quaternion newRotation=Quaternion.LookRotation(new Vector3(moveDirection.x,0f,moveDirection.z));
 			playerModel.transform.rotation=Quaternion.Slerp(playerModel.transform.rotation,newRotation,rotateSpeed *Time.deltaTime);
-			
+
 		}
 
 
 		anim.SetBool ("Grounded", controller.isGrounded);
-		anim.SetFloat ("Speed", Mathf.Abs(Input.GetAxis("Vertical"))+  Mathf.Abs(Input.GetAxis("Horizontal")) );
+		anim.SetFloat ("Speed", Mathf.Abs(controller.velocity.x)+  Mathf.Abs(controller.velocity.y));
 
 
 
@@ -156,7 +185,7 @@ public class PlayerController : MonoBehaviour {
 			}
 
 
-		
+
 		}
 
 
@@ -172,11 +201,23 @@ public class PlayerController : MonoBehaviour {
 
 		}
 
+		if (isDead && lives > 0) {
+			deathtimer -= Time.deltaTime;
+			if (deathtimer < 0) {
+				Respawn ();
+				deathtimer = 3f;
+
+			}
+		}
 
 
 
+
+		anim.SetBool ("Death", isDead);
+
+		ps4Controller = false;
 	}
-	
+
 	private void OnControllerColliderHit (ControllerColliderHit hit)
 	{
 		if(!controller.isGrounded && hit.normal.y < 0.1f)
@@ -187,7 +228,7 @@ public class PlayerController : MonoBehaviour {
 			isOnWall=true;
 
 			anim.SetBool ("WallJump", false);
-			if(Input.GetButtonDown("Jump"))
+			if(Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump"))
 			{
 				anim.SetBool ("WallJump", true);
 				isOnWall=false;
@@ -208,5 +249,31 @@ public class PlayerController : MonoBehaviour {
 	void OnCollisionExit(Collision collisionInfo) {
 		Debug.Log("No longer in contact with " + collisionInfo.transform.name);
 	}
+
+	public void death(){
+		isDead = true;
+
+		lives--;
+		if (lives != 0) {
+			//gameover
+		} 
+
+
+
+
+		//wait respawn 
+	}
+
+
+	void Respawn(){
+
+		isDead = false;
+		transform.position = respawnpoint;
+
+
+		gameObject.GetComponent<PlayerHealth> ().HealPlayer(1);
+	}
+
+
 
 }

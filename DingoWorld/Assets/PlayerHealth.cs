@@ -22,9 +22,9 @@ public class PlayerHealth : MonoBehaviour {
 
 	public void DamagePlayer(int damage){
 		currentHealth-=damage;
-        // TODO
-		/*if (currentHealth <= 0)
-			pc.death ();*/
+        
+		if (currentHealth <= 0)
+			pc.death ();
 	}
 	public void HealPlayer(int heal){
 		currentHealth=heal;
