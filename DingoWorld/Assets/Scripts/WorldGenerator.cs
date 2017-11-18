@@ -179,7 +179,8 @@ public class WorldGenerator : MonoBehaviour {
             right = new List<Vector3>();
 
             string prefix = (type == Type.NEXTS) ? "next" : "prev";
-            foreach (Transform transform in obj.transform)
+            Transform[] allChildren = obj.GetComponentsInChildren<Transform>();
+            foreach (Transform transform in allChildren)
             {
                 if (transform.name.Contains("up"))    AddTo(top, transform, prefix);
                 if (transform.name.Contains("down"))  AddTo(bot, transform, prefix);
