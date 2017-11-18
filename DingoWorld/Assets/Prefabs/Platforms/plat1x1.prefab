@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4995529373497710}
   m_Layer: 0
-  m_Name: Next_Front
+  m_Name: front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4290891627071246}
   m_Layer: 0
-  m_Name: Prev
+  m_Name: prev
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4524072845339912}
   m_Layer: 0
-  m_Name: Prev_Front
+  m_Name: back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -82,7 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4805550626591720}
   m_Layer: 0
-  m_Name: Next
+  m_Name: next
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -112,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1827881959912896}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.074913, y: 1.6072152, z: -7.644539}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4524072845339912}
@@ -250,7 +250,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b384986bd7a2498c810c9515efe3de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Prevs:
-  - {fileID: 1223038179008424}
-  Nexts:
-  - {fileID: 1409897493679172}
+  prevsUp: []
+  Prevs_Front: []
+  Prevs_Down: []
+  Nexts_Up: []
+  Nexts_Front: []
+  Nexts_Down: []
