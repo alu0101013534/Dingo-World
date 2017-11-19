@@ -5,23 +5,35 @@ using UnityEngine;
 public class OrbPickUp : MonoBehaviour {
 
 	public int value;
+	public ParticleSystem ps;
+	public GameObject psGo;
+	bool collected;
+
 	// Use this for initialization
 	void Start () {
-		
+		ps.Stop ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+		if (collected && !ps.isEmitting) {
+			Destroy (gameObject);
+		}
 		
 	}
 
 	private void OnTriggerEnter(Collider other){
 	
 	
-		if (other.tag == "Player") {
-		
+		if (!collected && other.tag == "Player") {
+			collected = true;
+
 			FindObjectOfType<GameManager> ().AddCoins (value);
-			Destroy (gameObject);
+			GetComponent<MeshRenderer>().enabled = false;
+
+			ps.Play ();
+			//Destroy (gameObject);
 		
 		}
 	

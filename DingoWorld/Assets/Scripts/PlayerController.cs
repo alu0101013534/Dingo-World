@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour {
 
 
 		anim.SetBool ("Grounded", controller.isGrounded);
-		anim.SetFloat ("Speed", Mathf.Abs(controller.velocity.x)+  Mathf.Abs(controller.velocity.y));
+		anim.SetFloat ("Speed", Mathf.Abs(controller.velocity.x)+  Mathf.Abs(controller.velocity.z));
 
 
 
