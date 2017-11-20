@@ -9,6 +9,8 @@ public class WorldGenerator : MonoBehaviour
     public int seed;
     public int depth;
     public int maxBranches;
+    public float coinsProbability;
+    public GameObject diamond;
 
     public int length;
     public int minLength;
@@ -16,7 +18,6 @@ public class WorldGenerator : MonoBehaviour
     public List<Platform> finalPlatforms;
     public List<Platform> platforms;
 
-    private GameObject killingFloor;
     private float lowestPoint;
 
     [System.Serializable]
@@ -29,7 +30,7 @@ public class WorldGenerator : MonoBehaviour
     public void Start()
     {
         GenerateMap();
-        killingFloor = GameObject.FindGameObjectsWithTag("KillingFloor")[0];
+        var killingFloor = GameObject.FindGameObjectsWithTag("KillingFloor")[0];
         killingFloor.transform.Translate(new Vector3(0f, lowestPoint, 0f));
     }
 
@@ -43,11 +44,19 @@ public class WorldGenerator : MonoBehaviour
     private void GenerateMap()
     {
         StartGenerator();
-        GameObject start = GetRandomCopy(startPlatforms);
-        GeneratePath(start, platforms, finalPlatforms, length, depth, 0);
+        GameObject start = GetRandomCopy(startPlatforms, false);
+        GameObject end   = GeneratePath(start, platforms, finalPlatforms, length, depth, 0);
+        AddDiamond(end);
     }
 
-    private void GeneratePath(GameObject start, List<Platform> middlePlatforms, List<Platform> finalPlatforms, int length, int depth, int baseRotation, bool forceFirstRotation = false)
+    private void AddDiamond(GameObject platform)
+    {
+        GameObject finalDiamond = Instantiate(diamond);
+        finalDiamond.transform.SetParent(platform.transform);
+        finalDiamond.transform.localPosition = new Vector3(0, 2, 0);
+    }
+
+    private GameObject GeneratePath(GameObject start, List<Platform> middlePlatforms, List<Platform> finalPlatforms, int length, int depth, int baseRotation, bool forceFirstRotation = false)
     {
         int rotation = baseRotation;
         int sectionLength = 0;
@@ -82,7 +91,7 @@ public class WorldGenerator : MonoBehaviour
         // Final platform
         do
         {
-            next = GetRandomCopy(finalPlatforms);
+            next = GetRandomCopy(finalPlatforms, false);
         } while (!AddNext(current, next, rotation, rotation));
 
         if ((depth > 0) && (generated.Count > 0))
@@ -93,10 +102,12 @@ public class WorldGenerator : MonoBehaviour
                 GeneratePath(selected, middlePlatforms, finalPlatforms, (int)(length * 0.2f), depth - 1, (int)selected.transform.eulerAngles.y, true);
             }
         }
+
+        return next;
     }
 
     /* Devuelve una instancia nueva de una lista de prefabs. De acuerdo a una lista de probabilidades si la hubiera */
-    private GameObject GetRandomCopy(List<Platform> list)
+    private GameObject GetRandomCopy(List<Platform> list, bool coins = true)
     {
         GameObject instance;
         float currentMax = 0;
@@ -110,10 +121,32 @@ public class WorldGenerator : MonoBehaviour
                 instance = Instantiate(platform.prefab);
                 instance.transform.position = Vector3.zero;
                 instance.transform.SetParent(this.transform);
+                if (coins)
+                {
+                    ActivateCoins(instance);
+                }
                 return instance;
             }
         }
         return null;
+    }
+
+    private void ActivateCoins(GameObject instance)
+    {
+        if (Random.Range(0f, 1f) > coinsProbability)
+        {
+            return;
+        }
+
+        Transform[] allChildren = instance.GetComponentsInChildren<Transform>();
+        foreach (Transform transform in allChildren)
+        {
+            if (transform.name.Contains("CoinsList"))
+            {
+                transform.GetChild(Random.Range(0, transform.childCount)).gameObject.SetActive(true);
+                return;
+            }
+        }
     }
 
     /* Añade un gameobject al mapa con una conexión aleatoria */

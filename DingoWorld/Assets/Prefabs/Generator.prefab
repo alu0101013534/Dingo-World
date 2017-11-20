@@ -53,25 +53,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turnRate: 0.3
   seed: 0
-  length: 400
+  depth: 0
+  maxBranches: 0
+  coinsProbability: 0.5
+  diamond: {fileID: 1980691320062876, guid: f6c6aff9279b14d7f8cd30bd06066894, type: 2}
+  length: 100
   minLength: 10
   startPlatforms:
-  - {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
+  - prefab: {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
+    probability: 1
   finalPlatforms:
-  - {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
+  - prefab: {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
+    probability: 1
   platforms:
-  - {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
-  - {fileID: 1922614092326292, guid: 95cbd7655cc18194795015da834cfb32, type: 2}
-  - {fileID: 1430207520995026, guid: 148e7b601cbaa5844819830f04fc20ef, type: 2}
-  - {fileID: 1000189187842754, guid: c6b8796b59f9c4c8692d0fbb6b22ca17, type: 2}
-  - {fileID: 1894356997598034, guid: 242cdba5ccaba4855afe22802b5dfad1, type: 2}
-  - {fileID: 1510858960487628, guid: 58b01cee5f0a03d4eb19193110c45e0f, type: 2}
-  - {fileID: 1659305412677846, guid: 86a259f11e799e04fa80ca71fbcac497, type: 2}
-  probabilities:
-  - 0.6
-  - 0.075
-  - 0.075
-  - 0.075
-  - 0.075
-  - 0.05
-  - 0.05
+  - prefab: {fileID: 1827881959912896, guid: bba47af4491a0449d865218eb3914c91, type: 2}
+    probability: 0.6
+  - prefab: {fileID: 1922614092326292, guid: 95cbd7655cc18194795015da834cfb32, type: 2}
+    probability: 0.05
+  - prefab: {fileID: 1430207520995026, guid: 148e7b601cbaa5844819830f04fc20ef, type: 2}
+    probability: 0.05
+  - prefab: {fileID: 1000189187842754, guid: c6b8796b59f9c4c8692d0fbb6b22ca17, type: 2}
+    probability: 0.1
+  - prefab: {fileID: 1894356997598034, guid: 242cdba5ccaba4855afe22802b5dfad1, type: 2}
+    probability: 0.1
+  - prefab: {fileID: 1510858960487628, guid: 58b01cee5f0a03d4eb19193110c45e0f, type: 2}
+    probability: 0.05
+  - prefab: {fileID: 1659305412677846, guid: 86a259f11e799e04fa80ca71fbcac497, type: 2}
+    probability: 0.05
