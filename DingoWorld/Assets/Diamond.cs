@@ -6,7 +6,7 @@ public class Diamond : MonoBehaviour {
 
 	private bool collected;
 
-	private bool isFinal;
+	public bool isFinal;
 	public float destroyTimer=3f;
 
 	private Animator anim;
