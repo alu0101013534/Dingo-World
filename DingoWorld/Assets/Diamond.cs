@@ -41,6 +41,8 @@ public class Diamond : MonoBehaviour {
 		if (!collected && other.tag == "Player") {
 			collected = true;
 
+			collected = true;
+			SoundManager.instance.PlayingSound("Diamond");
 			FindObjectOfType<GameManager> ().AddDiamonds (1);
 			if(isFinal)
 				FindObjectOfType<GameManager> ().FinalDiamond();

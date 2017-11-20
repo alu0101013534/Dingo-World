@@ -28,6 +28,7 @@ public class OrbPickUp : MonoBehaviour {
 	
 		if (!collected && other.tag == "Player") {
 			collected = true;
+			SoundManager.instance.PlayingSound("Coin");
 
 			FindObjectOfType<GameManager> ().AddCoins (value);
 			GetComponent<MeshRenderer>().enabled = false;
