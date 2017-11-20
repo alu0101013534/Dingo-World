@@ -41,11 +41,20 @@ public class PlayerController : MonoBehaviour {
 	public float deathtimer;
 	private Vector3 respawnpoint;
 	public int lives=3;
+	public bool isDiamondCollected;
+	private float diamondTimer =3f;
+	private bool isDeathFall;
+	private GameObject killFloor;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
 		controller=GetComponent<CharacterController>();
 		respawnpoint = transform.position;
+
+
+	
+
+			killFloor = GameObject.FindGameObjectWithTag ("KillingFloor");
 	}
 
 	// Update is called once per frame
@@ -78,7 +87,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			moveDirection = moveDirection.normalized * moveSpeed;
 		}
-		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact") || isDead) {
+		if (anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact") || isDead || isDiamondCollected) {
 			moveDirection = new Vector3 (0, 0, 0);
 		}
 		moveDirection.y=yAux;
@@ -87,7 +96,7 @@ public class PlayerController : MonoBehaviour {
 			isWalljumping = false;
 			forceY = 0f;
 			invertGrav = gravity * airTime;
-			if (Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump")){
+			if ((Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump") )&& !isDiamondCollected){
 
 
 
@@ -152,10 +161,11 @@ public class PlayerController : MonoBehaviour {
 		forceY -= gravity*Time.deltaTime* gravityScale;
 		moveDirection.y = forceY;
 
+
 		controller.Move(moveDirection*Time.deltaTime);
 
 		//Rotate to camera
-		if(Input.GetAxis("PS4_LeftAnalogVertical")!=0 || Input.GetAxis("PS4_LeftAnalogHorizontal")!=0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+		if(!isDiamondCollected &&(Input.GetAxis("PS4_LeftAnalogVertical")!=0 || Input.GetAxis("PS4_LeftAnalogHorizontal")!=0 || Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0))
 		{
 
 			transform.rotation=Quaternion.Euler(0f,pivot.rotation.eulerAngles.y,0f);
@@ -200,6 +210,17 @@ public class PlayerController : MonoBehaviour {
 
 
 		}
+		if (isDiamondCollected) {
+
+			diamondTimer -= Time.deltaTime;
+			if (diamondTimer < 0) {
+				isDiamondCollected = false;
+				diamondTimer = 3f;
+
+			}
+
+		}
+
 
 		if (isDead && lives > 0) {
 			deathtimer -= Time.deltaTime;
@@ -211,9 +232,15 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
+		if (!isDeathFall &&transform.position.y <= killFloor.transform.position.y) {
+			isDeathFall = true;
+			death ();
+		}
 
 
 		anim.SetBool ("Death", isDead);
+		anim.SetBool ("DeathFall", isDeathFall);
+		anim.SetBool ("DiamondCollected", isDiamondCollected);
 
 		ps4Controller = false;
 	}
@@ -268,6 +295,7 @@ public class PlayerController : MonoBehaviour {
 	void Respawn(){
 
 		isDead = false;
+		isDeathFall = false;
 		transform.position = respawnpoint;
 
 
@@ -275,5 +303,8 @@ public class PlayerController : MonoBehaviour {
 	}
 
 
+	public void DiamondCollected(){
 
+		isDiamondCollected = true;
+	}
 }

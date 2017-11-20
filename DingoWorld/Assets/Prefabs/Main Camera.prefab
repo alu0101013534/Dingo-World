@@ -160,6 +160,7 @@ MonoBehaviour:
   offset: {x: 0, y: -5, z: 10}
   useOffsetValues: 1
   rotateSpeed: 10
+  ps4Controller: 0
   pivot: {fileID: 4656683247147470}
   maxAngle: 60
   minAngle: -60

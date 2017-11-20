@@ -51,6 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1a4103c2e1cc4842a5b8dcdfad49572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Coins: 0
   LabelCoins: {fileID: 0}
   PausePanel: {fileID: 0}
+  DiamondCollectedLabel: {fileID: 0}

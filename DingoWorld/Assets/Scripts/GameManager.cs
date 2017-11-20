@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	public int Coins =0;
+	private int Coins =0;
+	private int Diamonds =0;
 	public Text LabelCoins;
 	public GameObject PausePanel;
-
+	public GameObject DiamondCollectedLabel;
+	private PlayerController pc;
 	private bool IsPaused =false;
 	// Use this for initialization
 	void Start () {
 		
+		pc=	GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController> ();
 	}
 	
 	// Update is called once per frame
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour {
 		}
 
 
+		DiamondCollectedLabel.SetActive (pc.isDiamondCollected);
 		
 	}
 
@@ -45,7 +49,16 @@ public class GameManager : MonoBehaviour {
 		LabelCoins.text="Gold: " + Coins;
 	
 	}
+	public void AddDiamonds(int value){
+		Diamonds += value;
+		//start short cutscene z
 
+	}
+
+	public void FinalDiamond(){
+	
+	//start Cutscene 
+	}
 
 	public void Resume(){
 

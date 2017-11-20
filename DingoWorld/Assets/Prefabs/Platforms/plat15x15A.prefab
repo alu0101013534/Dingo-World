@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4866558705388068}
   - component: {fileID: 65811903578127912}
   - component: {fileID: 64266436799860288}
+  - component: {fileID: 65751293066055558}
+  - component: {fileID: 114117145512564892}
   m_Layer: 0
   m_Name: Collider (1)
   m_TagString: Untagged
@@ -180,6 +182,8 @@ GameObject:
   - component: {fileID: 4517112902460496}
   - component: {fileID: 65342630736944122}
   - component: {fileID: 64385603309825752}
+  - component: {fileID: 65809622148448684}
+  - component: {fileID: 114861653545692212}
   m_Layer: 0
   m_Name: Collider (2)
   m_TagString: Untagged
@@ -197,6 +201,8 @@ GameObject:
   - component: {fileID: 4062653893526558}
   - component: {fileID: 65244441790891308}
   - component: {fileID: 64212482697601582}
+  - component: {fileID: 65468112851550390}
+  - component: {fileID: 114860802111880634}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -277,7 +283,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510858960487628}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.254424, y: 112.59375, z: 73.73317}
+  m_LocalPosition: {x: 10.484475, y: 3.645218, z: 7.28}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4553516175984728}
@@ -515,6 +521,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.4, y: 9.33, z: 0.38}
   m_Center: {x: 0, y: -5.43, z: 0.87}
+--- !u!65 &65468112851550390
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964837611736620}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7, y: 4.77, z: 0.85}
+  m_Center: {x: 0, y: -11.94, z: 1.09}
 --- !u!65 &65528412499655770
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -527,6 +545,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.083096, y: 3.0830967, z: 1.5297742}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65751293066055558
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034997177692332}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7, y: 4.77, z: 0.85}
+  m_Center: {x: 0, y: -11.94, z: 1.09}
+--- !u!65 &65809622148448684
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1866366619829368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7, y: 4.77, z: 0.85}
+  m_Center: {x: 0, y: -11.94, z: 1.09}
 --- !u!65 &65811903578127912
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -556,6 +598,42 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114117145512564892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1034997177692332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a257383fc874551823e1874abf9216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!114 &114860802111880634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1964837611736620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a257383fc874551823e1874abf9216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+--- !u!114 &114861653545692212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1866366619829368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3a257383fc874551823e1874abf9216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!114 &114973750533893800
 MonoBehaviour:
   m_ObjectHideFlags: 1
