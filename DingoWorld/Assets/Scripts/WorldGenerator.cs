@@ -6,15 +6,21 @@ public class WorldGenerator : MonoBehaviour {
 
     public float turnRate;
     public int seed;
-    
-	public int length;
+    public int depth;
+    public int maxBranches;
+
+    public int length;
     public int minLength;
-    public List<GameObject> startPlatforms;
-    public List<GameObject> finalPlatforms;
-    public List<GameObject> platforms;
-    public List<float> probabilities;
-    private int rotation;
-    private int sectionLength;
+    public List<Platform> startPlatforms;
+    public List<Platform> finalPlatforms;
+    public List<Platform> platforms;
+
+    [System.Serializable]
+    public class Platform
+    {
+        public GameObject prefab;
+        public float probability;
+    }
 
     public void Start()
     {
@@ -24,73 +30,92 @@ public class WorldGenerator : MonoBehaviour {
     private void StartGenerator()
     {
         seed = (seed != 0) ? seed : Random.Range(1, 100000);
-        rotation = 0;
-        sectionLength = 0;
         Random.InitState(seed);
     }
 
     /* Genera el mapa */
     private void GenerateMap()
     {
-        Time.timeScale = 0f;
-        // First platform
         StartGenerator();
-        GameObject current = GetRandomCopy(startPlatforms);
+        GameObject start = GetRandomCopy(startPlatforms);
+        GeneratePath(start, platforms, finalPlatforms, length, depth, 0);
+    }
+
+    private void GeneratePath(GameObject start, List<Platform> middlePlatforms, List<Platform> finalPlatforms, int length, int depth, int baseRotation, bool forceFirstRotation = false)
+    {
+        int rotation = baseRotation;
+        int sectionLength = 0;
+        int nextRotation = rotation;
+
+        GameObject current = start;
         GameObject next;
+        List<GameObject> generated = new List<GameObject>();
 
         // Middle platforms
         for (int i = 0; i < length; ++i)
         {
             do
             {
-                next = GetRandomCopy(platforms, probabilities);
-            } while (!AddNext(current, next));
+                next = GetRandomCopy(middlePlatforms);
+
+                if (forceFirstRotation || ((sectionLength > minLength) && (Random.Range(0f, 1f) < turnRate)))
+                {
+                    forceFirstRotation = false;
+                    nextRotation = (rotation == 0) ? ((Random.Range(0f, 1f) < .5f) ? +270 : +90) : 0;
+                    sectionLength = 0;
+                }
+
+            } while (!AddNext(current, next, rotation, nextRotation));
+
+            generated.Add(next);
+            sectionLength++;
+            rotation = nextRotation;
             current = next;
         }
-        
+
         // Final platform
         do
         {
             next = GetRandomCopy(finalPlatforms);
-        } while (!AddNext(current, next));
-        Time.timeScale = 1f;
+        } while (!AddNext(current, next, rotation, rotation));
+
+        if ((depth > 0) && (generated.Count > 0))
+        {
+            for (int i = 0; i < maxBranches; ++i)
+            {
+                GameObject selected = generated[Random.Range(0, generated.Count)];
+                GeneratePath(selected, middlePlatforms, finalPlatforms, (int)(length * 0.2f), depth - 1, (int)selected.transform.eulerAngles.y, true);
+            }
+        }
     }
-    
+
     /* Devuelve una instancia nueva de una lista de prefabs. De acuerdo a una lista de probabilidades si la hubiera */
-    private GameObject GetRandomCopy(List<GameObject> list, List<float> probabilities = null)
+    private GameObject GetRandomCopy(List<Platform> list)
     {
         GameObject instance;
-        if (probabilities == null)
-        {
-            instance = Instantiate(list[(int) Random.Range(0, list.Count)]);   
-        }
-        else
-        {
-            float currentMax = 0;
-            float random = Random.Range(0f, 1f);
-            int index;
+        float currentMax = 0;
+        float random = Random.Range(0f, 1f);
         
-            for (index = 0; (index < probabilities.Count); ++index)
+        foreach (Platform platform in list)
+        {
+            currentMax += platform.probability;
+            if (random < currentMax)
             {
-                currentMax += probabilities[index];
-                if (random < currentMax)
-                    break;
-            }        
-        
-            instance = Instantiate(list[index]);   
+                instance = Instantiate(platform.prefab);
+                instance.transform.position = Vector3.zero;
+                instance.transform.SetParent(this.transform);
+                return instance;
+            }
         }
-        instance.transform.position = Vector3.zero;
-        instance.transform.SetParent(this.transform);
-        return instance;
+        return null;
     }
     
     /* Añade un gameobject al mapa con una conexión aleatoria */
-    private bool AddNext(GameObject current, GameObject next)
+    private bool AddNext(GameObject current, GameObject next, int rotation, int nextRotation)
     {
-        int newRotation = RandomRotation();
-        next.transform.Rotate(new Vector3(0f, newRotation, 0f), Space.World);
+        next.transform.Rotate(new Vector3(0f, nextRotation, 0f), Space.World);
         var nexts = new Connection(current, Connection.Type.NEXTS, rotation);
-        var prevs = new Connection(next,    Connection.Type.PREVS, newRotation);
+        var prevs = new Connection(next,    Connection.Type.PREVS, nextRotation);
 
         Vector3 moveHere;
         Vector3 moveFrom;
@@ -138,23 +163,7 @@ public class WorldGenerator : MonoBehaviour {
         Vector3 traslation =  moveHere - moveFrom;
         next.transform.Translate(traslation, Space.World);
         next.transform.SetParent(this.transform);
-        sectionLength++;
-        rotation = newRotation;
         return true;
-    }
-
-    /* Calcula una rotación aleatoria en base a la actual */
-    private int RandomRotation()
-    {
-        if ((sectionLength > minLength) && (Random.Range(0f, 1f) < turnRate))
-        {
-            sectionLength = 0;
-            if (rotation == 0)
-                return (Random.Range(0f, 1f) < .5f) ? -90 : +90;
-            else
-                return 0;
-        }
-        return rotation;
     }
 
     /* Contiene las posibles conexión que ofrece un objeto nexts o prevs, pero no ambos a la vez */
@@ -203,7 +212,7 @@ public class WorldGenerator : MonoBehaviour {
         private void ApplyRotation(int rotation)
         {
             List<Vector3> aux;
-            if (rotation == -90)
+            if (rotation == +270)
             {
                 aux   = front;
                 front = right;
