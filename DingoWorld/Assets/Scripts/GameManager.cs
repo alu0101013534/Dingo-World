@@ -8,18 +8,41 @@ public class GameManager : MonoBehaviour {
 	private int Coins =0;
 	private int Diamonds =0;
 	public Text LabelCoins;
+	public Text LabelDiamonds;
+	public Text LabelLives;
 	public GameObject PausePanel;
 	public GameObject DiamondCollectedLabel;
 	private PlayerController pc;
 	private bool IsPaused =false;
+	private int totalCoins;
+	private bool found;
+	private int previousTotalCoins;
 	// Use this for initialization
 	void Start () {
 		
 		pc=	GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController> ();
+
+		//totalCoins=GameObject.FindGameObjectsWithTag ("Coins").Length;
+
+		LabelCoins.text=Coins+"/"+totalCoins;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+
+
+		if(!found)
+			totalCoins=GameObject.FindGameObjectsWithTag ("Coins").Length;
+
+		if (!found && previousTotalCoins != totalCoins) {
+			previousTotalCoins = totalCoins;
+		} else {
+			found = true;
+
+			LabelCoins.text=Coins+"/"+totalCoins;
+
+		}
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 		
@@ -40,18 +63,27 @@ public class GameManager : MonoBehaviour {
 
 
 		DiamondCollectedLabel.SetActive (pc.isDiamondCollected);
+
+
+		LabelLives.text=pc.lives.ToString();
+
+
+
+		LabelDiamonds.text=Diamonds.ToString();
 		
 	}
 
 	public void AddCoins(int value){
 		Coins += value;
 
-		LabelCoins.text="Gold: " + Coins;
+		LabelCoins.text=Coins+"/"+totalCoins;
 	
 	}
 	public void AddDiamonds(int value){
 		Diamonds += value;
-		//start short cutscene z
+
+
+		LabelDiamonds.text=Diamonds.ToString();
 
 	}
 

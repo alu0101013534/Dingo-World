@@ -11,6 +11,7 @@ public class OrbPickUp : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gameObject.tag="Coins";
 		ps.Stop ();
 	}
 	

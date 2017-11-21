@@ -153,3 +153,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  ps: {fileID: 0}
+  psGo: {fileID: 0}

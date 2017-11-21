@@ -433,7 +433,7 @@ Prefab:
         type: 2}
       propertyPath: LabelCoins
       value: 
-      objectReference: {fileID: 320893013}
+      objectReference: {fileID: 946460025}
     - target: {fileID: 114896263705264046, guid: bc165d96bbef44cfc835eccdb32bbd71,
         type: 2}
       propertyPath: PausePanel
@@ -444,9 +444,25 @@ Prefab:
       propertyPath: DiamondCollectedLabel
       value: 
       objectReference: {fileID: 1226013228}
+    - target: {fileID: 114896263705264046, guid: bc165d96bbef44cfc835eccdb32bbd71,
+        type: 2}
+      propertyPath: LabelDiamonds
+      value: 
+      objectReference: {fileID: 231407950}
+    - target: {fileID: 114896263705264046, guid: bc165d96bbef44cfc835eccdb32bbd71,
+        type: 2}
+      propertyPath: LabelLives
+      value: 
+      objectReference: {fileID: 1471126079}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc165d96bbef44cfc835eccdb32bbd71, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &231407950 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114809432885865812, guid: c1f8896b379874a0bbc710b041b6f9a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1270616073}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &256864665
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,12 +836,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &320893013 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114949950101411452, guid: c1f8896b379874a0bbc710b041b6f9a9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1270616073}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &366317226
 GameObject:
   m_ObjectHideFlags: 0
@@ -8933,6 +8943,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &946460025 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114871744248351602, guid: c1f8896b379874a0bbc710b041b6f9a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1270616073}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &946851857
 GameObject:
   m_ObjectHideFlags: 0
@@ -13688,6 +13704,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 242cdba5ccaba4855afe22802b5dfad1, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1471126079 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114791761808677482, guid: c1f8896b379874a0bbc710b041b6f9a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1270616073}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1475732945
 GameObject:
   m_ObjectHideFlags: 0
