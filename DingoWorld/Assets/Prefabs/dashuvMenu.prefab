@@ -1041,6 +1041,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4194604409206176}
   - component: {fileID: 95711175699730858}
+  - component: {fileID: 320648005652540906}
   m_Layer: 0
   m_Name: dashuvMenu
   m_TagString: Untagged
@@ -2352,7 +2353,7 @@ Animator:
   m_GameObject: {fileID: 1857863247150306}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 97759ddf4e64dac48a9fbc7fac0fbb73, type: 3}
-  m_Controller: {fileID: 9100000, guid: eb816164684db7f4bb958f8c6425c684, type: 2}
+  m_Controller: {fileID: 9100000, guid: f47ac8a9811c54fcd9d71138a220400c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2469,3 +2470,21 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0008238265, y: 0.008653014, z: 0.004615441}
     m_Extent: {x: 0.028988812, y: 0.036223397, z: 0.026730351}
   m_DirtyAABB: 0
+--- !u!320 &320648005652540906
+PlayableDirector:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1857863247150306}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 28bafd691beb88046836cdc6dfca38c4, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 114195039448488518, guid: 28bafd691beb88046836cdc6dfca38c4, type: 2}
+    value: {fileID: 1857863247150306}
+  m_ExposedReferences:
+    m_References: []
