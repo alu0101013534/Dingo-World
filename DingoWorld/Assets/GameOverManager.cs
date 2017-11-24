@@ -13,6 +13,7 @@ public class GameOverManager : MonoBehaviour {
 	private int highScore;
 	private int score;
 
+	public int lvlToLoad=2;
 
 
 	// Use this for initialization
@@ -50,7 +51,7 @@ public class GameOverManager : MonoBehaviour {
 
 	public void NewGame(){
 		
-		Application.LoadLevel (2);
+		Application.LoadLevel (lvlToLoad);
 	}
 
 	public void Menu(){
