@@ -12,11 +12,15 @@ public class GameManager : MonoBehaviour {
 	public Text LabelLives;
 	public GameObject PausePanel;
 	public GameObject DiamondCollectedLabel;
+
+	public GameObject SettingsPanel;
 	private PlayerController pc;
 	private bool IsPaused =false;
 	private int totalCoins;
 	private bool found;
 	private int previousTotalCoins;
+
+	private 
 	// Use this for initialization
 	void Start () {
 		
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour {
 
 	public void Options(){
 
+		SettingsPanel.SetActive (true);
 
 	}
 
