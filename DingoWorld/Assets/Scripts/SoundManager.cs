@@ -13,12 +13,15 @@ public class SoundManager : MonoBehaviour {
 	public class SoundGroup{
 		public AudioClip audioClip;
 		public string soundName;
+        
 	}
 
 	public GameObject camera;
     private int lvl;
 	private bool isFxEnabled;
-	public  AudioSource bgmSound;
+    public float musicVolume;
+    public float effectsVolume;
+    public  AudioSource bgmSound;
 	
 	public List<SoundGroup> sound_List = new List<SoundGroup>();
 	
