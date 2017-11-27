@@ -50,8 +50,8 @@ public class GameOverManager : MonoBehaviour {
 
 
 	public void NewGame(){
-		
-		Application.LoadLevel (lvlToLoad);
+		PlayerPrefs.SetInt ("Score", 0);
+		Application.LoadLevel (1);
 	}
 
 	public void Menu(){

@@ -54,6 +54,9 @@ public class MenuControl : MonoBehaviour {
 		
 
 	public void Play(){
+
+		PlayerPrefs.SetInt ("Lifes", 3);
+		PlayerPrefs.SetInt ("Score", 0);
 		Application.LoadLevel(1);
 
 	}
