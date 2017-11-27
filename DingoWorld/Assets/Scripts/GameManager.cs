@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 		//totalCoins=GameObject.FindGameObjectsWithTag ("Coins").Length;
 
 		LabelCoins.text=Coins+"/"+totalCoins;
+		Diamonds = PlayerPrefs.GetInt ("Score", 0);
 	}
 	
 	// Update is called once per frame
@@ -81,6 +82,11 @@ public class GameManager : MonoBehaviour {
 		Coins += value;
 
 		LabelCoins.text=Coins+"/"+totalCoins;
+
+		if (Coins == totalCoins) {
+			
+			pc.addLive ();
+		}
 	
 	}
 	public void AddDiamonds(int value){
@@ -91,9 +97,21 @@ public class GameManager : MonoBehaviour {
 
 	}
 
+	public void GameOver(){
+
+		PlayerPrefs.SetInt ("Lifes", 3);
+		PlayerPrefs.SetInt ("Score", Diamonds);
+		Application.LoadLevel (2);
+	
+	}
+
+
 	public void FinalDiamond(){
 	
-	//start Cutscene 
+
+		PlayerPrefs.SetInt ("Lifes", pc.lives);
+		PlayerPrefs.SetInt ("Score", Diamonds);
+		Application.LoadLevel (1);
 	}
 
 	public void Resume(){

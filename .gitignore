@@ -40,3 +40,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+DingoWorld/Library/assetDatabase3
+DingoWorld/Library/CurrentLayout.dwlt
+DingoWorld/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb

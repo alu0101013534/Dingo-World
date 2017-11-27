@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour {
 	private float diamondTimer =3f;
 	private bool isDeathFall;
 	private GameObject killFloor;
+	private bool isGameOver;
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 
 
 	
-
+		lives = PlayerPrefs.GetInt ("Lifes",3);
 			killFloor = GameObject.FindGameObjectWithTag ("KillingFloor");
 	}
 
@@ -222,10 +223,14 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
-		if (isDead && lives > 0) {
+		if (isDead && lives >= 0) {
 			deathtimer -= Time.deltaTime;
 			if (deathtimer < 0) {
-				Respawn ();
+				if (!isGameOver) {
+					Respawn ();
+				} else {
+					GameObject.FindObjectOfType<GameManager> ().GameOver ();
+				}
 				deathtimer = 3f;
 
 			}
@@ -281,8 +286,8 @@ public class PlayerController : MonoBehaviour {
 		isDead = true;
 
 		lives--;
-		if (lives != 0) {
-			//gameover
+		if (lives <= 0) {
+			isGameOver = true;
 		} 
 
 
@@ -290,9 +295,11 @@ public class PlayerController : MonoBehaviour {
 
 		//wait respawn 
 	}
+	public void addLive(){
+		lives++;
+	}
 
-
-	void Respawn(){
+	private void Respawn(){
 
 		isDead = false;
 		isDeathFall = false;
