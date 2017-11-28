@@ -220,6 +220,11 @@ GameObject:
   m_PrefabParentObject: {fileID: 1119756970317192, guid: caf8114199f8637498dcf39e88a6b5ec,
     type: 2}
   m_PrefabInternal: {fileID: 572706874}
+--- !u!137 &644202368 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 137841970184803812, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85,
+    type: 2}
+  m_PrefabInternal: {fileID: 1129286474}
 --- !u!1001 &959809609
 Prefab:
   m_ObjectHideFlags: 0
@@ -377,6 +382,16 @@ Prefab:
       propertyPath: pivot
       value: 
       objectReference: {fileID: 1618708914}
+    - target: {fileID: 114533550285126632, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85,
+        type: 2}
+      propertyPath: invicibilityLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114533550285126632, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85,
+        type: 2}
+      propertyPath: playerRenderer
+      value: 
+      objectReference: {fileID: 644202368}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85, type: 2}
   m_IsPrefabParent: 0

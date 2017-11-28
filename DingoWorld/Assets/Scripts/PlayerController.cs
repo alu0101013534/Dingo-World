@@ -46,6 +46,11 @@ public class PlayerController : MonoBehaviour {
 	private bool isDeathFall;
 	private GameObject killFloor;
 	private bool isGameOver;
+
+	private PlayerHealth ph;
+	public bool spawned;
+
+
 	// Use this for initialization
 	void Start () {
 		//thisRigidbody= GetComponent<Rigidbody>();
@@ -55,7 +60,10 @@ public class PlayerController : MonoBehaviour {
 
 	
 		lives = PlayerPrefs.GetInt ("Lifes",3);
-			killFloor = GameObject.FindGameObjectWithTag ("KillingFloor");
+		killFloor = GameObject.FindGameObjectWithTag ("KillingFloor");
+
+		ph = gameObject.GetComponent<PlayerHealth> ();
+
 	}
 
 	// Update is called once per frame
@@ -243,6 +251,11 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
+		if (ph.invicibilityCounter <= 0) {
+		
+			spawned = false;
+		}
+
 		anim.SetBool ("Death", isDead);
 		anim.SetBool ("DeathFall", isDeathFall);
 		anim.SetBool ("DiamondCollected", isDiamondCollected);
@@ -305,6 +318,8 @@ public class PlayerController : MonoBehaviour {
 
 		isDead = false;
 		isDeathFall = false;
+
+		spawned = true;
 		transform.position = respawnpoint;
 
 

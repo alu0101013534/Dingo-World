@@ -4036,7 +4036,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1850941332801034}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.3, y: 6.06, z: -4.34}
+  m_LocalPosition: {x: 53.6, y: 0.3, z: -15.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4788022994923384}
@@ -4469,6 +4469,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 1
+  invicibilityLength: 5
+  invicibilityCounter: 0
+  playerRenderer: {fileID: 137841970184803812}
+  flashLengh: 0.1
 --- !u!114 &114941309330059066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4502,6 +4506,8 @@ MonoBehaviour:
   wallFallSpeed: 3
   deathtimer: 3
   lives: 3
+  isDiamondCollected: 0
+  spawned: 0
 --- !u!136 &136812241396582802
 CapsuleCollider:
   m_ObjectHideFlags: 1
