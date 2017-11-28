@@ -1,20 +1,20 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bomb.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SettingsManager.cs">
     <Files>
-      <File FileName="Assets\GameOverManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\GameOverManager.cs" Line="22" Column="19" />
       <File FileName="Assets\Scripts\OrbPickUp.cs" Line="1" Column="1" />
       <File FileName="Assets\Diamond.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="58" Column="13" />
+      <File FileName="Assets\Scripts\PlayerController.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\MovingPlatform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\CameraController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CameraController.cs" Line="71" Column="4" />
       <File FileName="Assets\StickPlatform.cs" Line="1" Column="1" />
       <File FileName="Assets\PlayerHealth.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SoundManager.cs" Line="22" Column="31" />
-      <File FileName="Assets\Bomb.cs" Line="22" Column="53" />
-      <File FileName="Assets\Scripts\SettingsManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\BossCol.cs" Line="45" Column="6" />
+      <File FileName="Assets\Scripts\SoundManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Bomb.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SettingsManager.cs" Line="44" Column="12" />
+      <File FileName="Assets\BossCol.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -19,7 +19,7 @@ public class GameOverManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-
+		Cursor.lockState = CursorLockMode.None;
 		highScore = PlayerPrefs.GetInt ("HighScore",5);
 
 		score = PlayerPrefs.GetInt ("Score",0);
