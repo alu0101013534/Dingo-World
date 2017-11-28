@@ -285,7 +285,9 @@ public class PlayerController : MonoBehaviour {
 	public void death(){
 		isDead = true;
 
-		lives--;
+		if(!isGameOver && lives > 0)
+			lives--;
+
 		if (lives <= 0) {
 			isGameOver = true;
 		} 
