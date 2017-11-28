@@ -13,11 +13,6 @@ public class SettingsManager : MonoBehaviour {
     public Slider musicSlider;
     public Slider effectsSlider;
 
-    GameObject thecamera;
-    CameraController camera;
-
-    GameObject themcontroller;
-    GameObject theecontroller;
 
 
     void onEnable()
@@ -33,57 +28,53 @@ public class SettingsManager : MonoBehaviour {
 
     private void OnEffectsChange()
     {
-        SoundManager effects = theecontroller.GetComponent<SoundManager>();
-        effects.effectsVolume = effectsSlider.value;
+        PlayerPrefs.SetFloat("Effects", effectsSlider.value);
     }
 
     private void OnMusicChange()
     {
-        SoundManager music = themcontroller.GetComponent<SoundManager>();
-        music.musicVolume = musicSlider.value;
+        PlayerPrefs.SetFloat("Musica", musicSlider.value);
     }
 
     private void OnSensivityChange()
     {
-        CameraController camera = thecamera.GetComponent<CameraController>();
-        camera.rotateSpeed = sensivitySlider.value;
+        PlayerPrefs.SetFloat("Sensibilidad", sensivitySlider.value);
     }
 
     private void OnInvertYToggle()
     {
-        if (invertYToggle.isOn == false)
+        if(invertYToggle.isOn == true)
         {
-            CameraController camera = thecamera.GetComponent<CameraController>();
-            camera.invertYaxis = -1;
+            PlayerPrefs.SetInt("InvertY", -1);
         }
         else
         {
-            CameraController camera = thecamera.GetComponent<CameraController>();
-            camera.invertYaxis = 1;
+            PlayerPrefs.SetInt("InvertY", 1);
         }
 
     }
 
     private void OnInvertXToggle()
     {
-        if(invertXToggle.isOn == false)
-        {
-            CameraController camera = thecamera.GetComponent<CameraController>();
-            camera.invertXaxis = -1;
-        }
-        else
-        {
-            CameraController camera = thecamera.GetComponent<CameraController>();
-            camera.invertXaxis = 1;
-        }
+       if(invertXToggle.isOn == true)
+       {
+           PlayerPrefs.SetInt("InvertX", -1);
+       }
+       else
+       {
+            PlayerPrefs.SetInt("InvertX", 1);
+       }
         
     }
 
 
     // Use this for initialization
     void Start () {
-        thecamera = GameObject.Find("Main Camera");
-        themcontroller = GameObject.Find("SoundManager");
+        PlayerPrefs.SetFloat("Musica", 1.0f);
+        PlayerPrefs.SetFloat("Efectos", 1.0f);
+        PlayerPrefs.SetInt("InvertX", 1);
+        PlayerPrefs.SetInt("InvertY", 1);
+        PlayerPrefs.SetFloat("Sensibilidad", 1.0f);
     }
 	
 	// Update is called once per frame

@@ -20,8 +20,6 @@ public class CameraController : MonoBehaviour {
 	public bool invertY;
 	private PlayerController pc;
 
-    public int invertYaxis = 1;
-    public int invertXaxis = 1;
 
 
 
