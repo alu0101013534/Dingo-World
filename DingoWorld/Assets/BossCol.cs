@@ -45,7 +45,8 @@ public class BossCol : MonoBehaviour {
 			//FindObjectOfType<PigBossController> ().Damage();
 
 			//handAnim switch anim
-		  
+
+			SoundManager.instance.PlayingSound("Cannon");
 			GameObject go = (GameObject)Instantiate (bomb, spawnpoint.position, Quaternion.identity);
 
 

@@ -7,7 +7,7 @@ public class Diamond : MonoBehaviour {
 	private bool collected;
 
 	public bool isFinal;
-	public float destroyTimer=3f;
+	public float destroyTimer=2f;
 
 	private Animator anim;
 
@@ -25,6 +25,10 @@ public class Diamond : MonoBehaviour {
 
 			destroyTimer -= Time.deltaTime;
 			if (destroyTimer < 0) {
+				if(isFinal)
+					FindObjectOfType<GameManager> ().FinalDiamond();
+
+
 				Destroy (gameObject);
 
 			}
@@ -44,10 +48,7 @@ public class Diamond : MonoBehaviour {
 			collected = true;
 			SoundManager.instance.PlayingSound("Diamond");
 			FindObjectOfType<GameManager> ().AddDiamonds (1);
-			if(isFinal)
-				FindObjectOfType<GameManager> ().FinalDiamond();
-
-
+	
 			FindObjectOfType<PlayerController> ().DiamondCollected();
 
 			gameObject.transform.parent = player.transform;

@@ -4489,7 +4489,7 @@ MonoBehaviour:
   SecondJumpForce: 25
   ThirdJumpForce: 30
   walljumpForce: 20
-  jumpwindowTime: 1
+  jumpwindowTime: 0.2
   jumptimer: 0
   controller: {fileID: 143068425743432978}
   gravityScale: 4

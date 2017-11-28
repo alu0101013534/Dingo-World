@@ -52,6 +52,7 @@ public class Bomb : MonoBehaviour {
 
 			// Explode sound SoundManager.instance.PlayingSound("Coin");
 
+			SoundManager.instance.PlayingSound("Exp");
 			GetComponent<MeshRenderer>().enabled = false;
 			FindObjectOfType<PigBossController> ().Damage();
 			ps.Play ();

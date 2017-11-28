@@ -247,6 +247,8 @@ public class PlayerController : MonoBehaviour {
 
 		if (!isDeathFall &&transform.position.y <= killFloor.transform.position.y) {
 			isDeathFall = true;
+			ph.DamagePlayer (0);
+			deathtimer = 1f;
 			death ();
 		}
 

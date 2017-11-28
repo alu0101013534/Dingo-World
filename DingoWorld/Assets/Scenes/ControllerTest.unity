@@ -2397,16 +2397,6 @@ Prefab:
       propertyPath: pivot
       value: 
       objectReference: {fileID: 499277890}
-    - target: {fileID: 114941309330059066, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85,
-        type: 2}
-      propertyPath: deathtimer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114941309330059066, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85,
-        type: 2}
-      propertyPath: diamondTimer
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1b6baf38db0f5c44dafe7e0dfaee8d85, type: 2}
   m_IsPrefabParent: 0

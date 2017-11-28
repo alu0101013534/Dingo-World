@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	private bool found;
 	private int previousTotalCoins;
 
-	private 
+	private int lvl;
 	// Use this for initialization
 	void Start () {
 		
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour {
 
 		LabelCoins.text=Coins+"/"+totalCoins;
 		Diamonds = PlayerPrefs.GetInt ("Score", 0);
+		lvl = Application.loadedLevel;
 	}
 	
 	// Update is called once per frame
@@ -101,7 +102,7 @@ public class GameManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt ("Lifes", 3);
 		PlayerPrefs.SetInt ("Score", Diamonds);
-		Application.LoadLevel (2);
+		Application.LoadLevel (3);
 	
 	}
 
@@ -111,7 +112,15 @@ public class GameManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt ("Lifes", pc.lives);
 		PlayerPrefs.SetInt ("Score", Diamonds);
-		Application.LoadLevel (1);
+
+		if (lvl == 1) {
+			Application.LoadLevel (2);
+		}
+		if (lvl == 2) {
+
+			Application.LoadLevel (1);
+		}
+		
 	}
 
 	public void Resume(){
