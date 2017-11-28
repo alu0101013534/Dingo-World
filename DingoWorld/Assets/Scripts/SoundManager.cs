@@ -19,7 +19,7 @@ public class SoundManager : MonoBehaviour {
 	public GameObject camera;
     private int lvl;
 	private bool isFxEnabled;
-    public  AudioSource bgmSound;
+	public  AudioSource bgmSound;
 	
 	public List<SoundGroup> sound_List = new List<SoundGroup>();
 	

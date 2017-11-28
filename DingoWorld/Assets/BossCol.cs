@@ -6,11 +6,11 @@ public class BossCol : MonoBehaviour {
 
 	private bool hit;
 
-	public bool isFinal;
 	public float destroyTimer=3f;
 
-	public Animator handAnim;
+	public Transform spawnpoint;
 
+	public GameObject bomb;
 	public GameObject player;
 	// Use this for initialization
 	void Start () {
@@ -26,7 +26,7 @@ public class BossCol : MonoBehaviour {
 			destroyTimer -= Time.deltaTime;
 			if (destroyTimer < 0) {
 				destroyTimer = 3f;
-				hit = false;
+				Destroy(gameObject);
 
 			}
 
@@ -42,11 +42,11 @@ public class BossCol : MonoBehaviour {
 		if (!hit && other.tag == "Player") {
 			hit = true;
 
-			FindObjectOfType<PigBossController> ().Damage();
+			//FindObjectOfType<PigBossController> ().Damage();
 
 			//handAnim switch anim
-
-
+		  
+			GameObject go = (GameObject)Instantiate (bomb, spawnpoint.position, Quaternion.identity);
 
 
 		}
