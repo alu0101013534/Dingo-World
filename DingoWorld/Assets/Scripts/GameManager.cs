@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour {
 
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape)) {
+		if (Input.GetKeyDown (KeyCode.Escape) && SettingsPanel.activeSelf == false) {
 		
 			IsPaused = !IsPaused;
 			PausePanel.SetActive (IsPaused);
@@ -125,9 +125,20 @@ public class GameManager : MonoBehaviour {
 
 	public void Options(){
 
-		SettingsPanel.SetActive (true);
+        IsPaused = false;
+        PausePanel.SetActive(IsPaused);
+        Time.timeScale = 0f;
+        SettingsPanel.SetActive (true);
+        
+
 
 	}
+
+    public void ExitOptions()
+    {
+        SettingsPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
 
 	public void Quit(){
 
