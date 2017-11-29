@@ -16,11 +16,17 @@ public class CameraController : MonoBehaviour {
 
 	public float maxAngle;
 	public float minAngle;
-
-	public bool invertY;
 	private PlayerController pc;
 
+    private int invX;
+    private int invY;
 
+    public void UpdatePrefs()
+    {
+        invX = PlayerPrefs.GetInt("InvertX");
+        invY = PlayerPrefs.GetInt("InvertY");
+        rotateSpeed = PlayerPrefs.GetFloat("Sensibilidad");
+    }
 
 
 	// Use this for initialization
@@ -37,7 +43,11 @@ public class CameraController : MonoBehaviour {
 
 		Cursor.lockState = CursorLockMode.Locked;
 		pc = GameObject.FindWithTag ("Player").GetComponent <PlayerController> ();
-	}
+
+        invX = PlayerPrefs.GetInt("InvertX");
+        invY = PlayerPrefs.GetInt("InvertY");
+        rotateSpeed = PlayerPrefs.GetFloat("Sensibilidad");
+    }
 
 	// Update is called once per frame
 	void LateUpdate () {
@@ -51,11 +61,12 @@ public class CameraController : MonoBehaviour {
 				}
 			}
 
-			if (ps4Controller) {
-				rotateSpeed = 30f;
-			} else {
-				rotateSpeed = 5f;
-			}
+			//if (ps4Controller) {
+				//rotateSpeed = 30f;
+			//} else {
+				//rotateSpeed = 5f * ;
+			//}
+
 
 			pivot.transform.position = target.transform.position;
 			//get x position of the mouse and rotate
@@ -67,8 +78,15 @@ public class CameraController : MonoBehaviour {
 			}
 
 			pivot.transform.position = target.transform.position;
-			//get x position of the mouse and rotate
-			pivot.Rotate (0, horizontal, 0);
+            //get x position of the mouse and rotate
+
+            if(invX == 1) {
+                pivot.Rotate(0, horizontal, 0);
+
+            } else {
+                pivot.Rotate(0, -horizontal, 0);
+            }
+            
 			//get y position of the mouse and rotate
 
 			float vertical;
@@ -81,7 +99,7 @@ public class CameraController : MonoBehaviour {
 			//get y position of the mouse and rotate
 
 
-			if (invertY) {
+			if (invY == 1) {
 				pivot.Rotate (vertical, 0, 0);
 
 			} else {

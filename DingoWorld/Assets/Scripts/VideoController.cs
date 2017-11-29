@@ -46,5 +46,7 @@ public class VideoController : MonoBehaviour {
     {
         videoPlayer.Stop();
         audioPlayer.Stop();
+
+		Application.LoadLevel(2);
     }
 }

@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour {
 
 		PlayerPrefs.SetInt ("Lifes", 3);
 		PlayerPrefs.SetInt ("Score", Diamonds);
-		Application.LoadLevel (3);
+		Application.LoadLevel (4);
 	
 	}
 
@@ -113,12 +113,12 @@ public class GameManager : MonoBehaviour {
 		PlayerPrefs.SetInt ("Lifes", pc.lives);
 		PlayerPrefs.SetInt ("Score", Diamonds);
 
-		if (lvl == 1) {
-			Application.LoadLevel (2);
-		}
 		if (lvl == 2) {
+			Application.LoadLevel (3);
+		}
+		if (lvl == 3) {
 
-			Application.LoadLevel (1);
+			Application.LoadLevel (2);
 		}
 		
 	}
@@ -145,8 +145,11 @@ public class GameManager : MonoBehaviour {
 
     public void ExitOptions()
     {
-        SettingsPanel.SetActive(false);
-        Time.timeScale = 1f;
+		SettingsPanel.SetActive(false);
+		Time.timeScale = 1f;
+
+		FindObjectOfType<CameraController>().UpdatePrefs();
+		FindObjectOfType<SoundManager>().UpdateMusicVolume();
     }
 
 	public void Quit(){

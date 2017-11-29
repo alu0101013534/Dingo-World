@@ -19,15 +19,18 @@ public class SoundManager : MonoBehaviour {
 	public GameObject camera;
     private int lvl;
 	private bool isFxEnabled;
-	public  AudioSource bgmSound;
+    public  AudioSource bgmSound;
+    
 	
 	public List<SoundGroup> sound_List = new List<SoundGroup>();
 	
 	public static SoundManager instance;
 	
+    
 	public void Start(){
 		instance = this;
-        lvl = PlayerPrefs.GetInt("Level",1);
+        bgmSound.volume = PlayerPrefs.GetFloat("Musica");
+        
 		camera = GameObject.FindGameObjectWithTag ("MainCamera");
 		if(PlayerPrefs.GetInt("isMusicEnabled",1)==1)
 		{
@@ -49,7 +52,12 @@ public class SoundManager : MonoBehaviour {
         //StartCoroutine(StartBGM());
     }
 
-	public void Play(){
+    public void UpdateMusicVolume()
+    {
+        bgmSound.volume = PlayerPrefs.GetFloat("Musica");
+    }
+
+    public void Play(){
 
 
         lvl = PlayerPrefs.GetInt("Level",1);

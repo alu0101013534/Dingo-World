@@ -11,7 +11,6 @@ public class SettingsManager : MonoBehaviour {
     public Toggle invertYToggle;
     public Slider sensivitySlider;
     public Slider musicSlider;
-    public Slider effectsSlider;
 
 
 
@@ -21,27 +20,21 @@ public class SettingsManager : MonoBehaviour {
         invertYToggle.onValueChanged.AddListener(delegate { OnInvertYToggle(); });
         sensivitySlider.onValueChanged.AddListener(delegate { OnSensivityChange(); });
         musicSlider.onValueChanged.AddListener(delegate { OnMusicChange(); });
-        effectsSlider.onValueChanged.AddListener(delegate { OnEffectsChange(); });
 
         
     }
 
-    private void OnEffectsChange()
-    {
-        PlayerPrefs.SetFloat("Effects", effectsSlider.value);
-    }
-
-    private void OnMusicChange()
+    public void OnMusicChange()
     {
         PlayerPrefs.SetFloat("Musica", musicSlider.value);
     }
 
-    private void OnSensivityChange()
+    public void OnSensivityChange()
     {
         PlayerPrefs.SetFloat("Sensibilidad", sensivitySlider.value);
     }
 
-    private void OnInvertYToggle()
+    public void OnInvertYToggle()
     {
         if(invertYToggle.isOn == true)
         {
@@ -54,7 +47,7 @@ public class SettingsManager : MonoBehaviour {
 
     }
 
-    private void OnInvertXToggle()
+    public void OnInvertXToggle()
     {
        if(invertXToggle.isOn == true)
        {
@@ -70,11 +63,7 @@ public class SettingsManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        PlayerPrefs.SetFloat("Musica", 1.0f);
-        PlayerPrefs.SetFloat("Efectos", 1.0f);
-        PlayerPrefs.SetInt("InvertX", 1);
-        PlayerPrefs.SetInt("InvertY", 1);
-        PlayerPrefs.SetFloat("Sensibilidad", 1.0f);
+        
     }
 	
 	// Update is called once per frame

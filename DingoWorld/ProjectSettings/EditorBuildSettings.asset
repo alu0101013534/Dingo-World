@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/ControllerTest.unity
     guid: e85f68fc7cf4f44cd81812abad44ab89
   - enabled: 1
+    path: Assets/Scenes/VideoPlayer.unity
+    guid: 416ddc501e2ed6f41957a2c6e6b163ab
+  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: cfc562690ff5e45cc886102218e85a7b
   - enabled: 1
