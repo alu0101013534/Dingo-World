@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class VideoController : MonoBehaviour {
 
@@ -28,6 +29,8 @@ public class VideoController : MonoBehaviour {
             audioPlayer.Play();
             StartCoroutine(PlayVideoDelay());
         }
+
+        StartCoroutine(Wait((float)videoClip.length, OnCompleted));
     }
 
     private IEnumerator PlayVideoDelay()
@@ -46,7 +49,17 @@ public class VideoController : MonoBehaviour {
     {
         videoPlayer.Stop();
         audioPlayer.Stop();
+        OnCompleted();
+    }
 
-		Application.LoadLevel(2);
+    private void OnCompleted()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    private IEnumerator Wait(float duration, System.Action callback)
+    {
+        yield return new WaitForSeconds(duration);
+        if (callback != null) callback();
     }
 }

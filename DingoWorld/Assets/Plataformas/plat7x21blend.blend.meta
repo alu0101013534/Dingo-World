@@ -1,17 +1,64 @@
 fileFormatVersion: 2
-guid: 79d4a0ebaf6ad624bb550be427b8a8d3
-timeCreated: 1511977223
+guid: 8dc20e017215f7a43bf8bfa56fa52868
+timeCreated: 1512064408
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: default
-    100002: //RootNode
-    400000: default
-    400002: //RootNode
-    2300000: default
-    3300000: default
-    4300000: default
+    100000: Cube_001
+    100002: Cube_002
+    100004: Cube_003
+    100006: Cube_004
+    100008: Cube_005
+    100010: Cube_006
+    100012: Cube_007
+    100014: Cube_008
+    100016: Cube_009
+    100018: Cube_010
+    100020: //RootNode
+    400000: Cube_001
+    400002: Cube_002
+    400004: Cube_003
+    400006: Cube_004
+    400008: Cube_005
+    400010: Cube_006
+    400012: Cube_007
+    400014: Cube_008
+    400016: Cube_009
+    400018: Cube_010
+    400020: //RootNode
+    2300000: Cube_001
+    2300002: Cube_002
+    2300004: Cube_003
+    2300006: Cube_004
+    2300008: Cube_005
+    2300010: Cube_006
+    2300012: Cube_007
+    2300014: Cube_008
+    2300016: Cube_009
+    2300018: Cube_010
+    3300000: Cube_001
+    3300002: Cube_002
+    3300004: Cube_003
+    3300006: Cube_004
+    3300008: Cube_005
+    3300010: Cube_006
+    3300012: Cube_007
+    3300014: Cube_008
+    3300016: Cube_009
+    3300018: Cube_010
+    4300000: Cube_010
+    4300002: Cube_009
+    4300004: Cube_008
+    4300006: Cube_007
+    4300008: Cube_006
+    4300010: Cube_005
+    4300012: Cube_004
+    4300014: Cube_003
+    4300016: Cube_002
+    4300018: Cube_001
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -81,7 +128,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

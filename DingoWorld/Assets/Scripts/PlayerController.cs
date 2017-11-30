@@ -51,27 +51,18 @@ public class PlayerController : MonoBehaviour {
 	public bool spawned;
 
 
-	// Use this for initialization
-	void Start () {
-		//thisRigidbody= GetComponent<Rigidbody>();
-		controller=GetComponent<CharacterController>();
+	private void Start () {
+		controller   = GetComponent<CharacterController>();
 		respawnpoint = transform.position;
-
-
-	
-		lives = PlayerPrefs.GetInt ("Lifes",3);
-		killFloor = GameObject.FindGameObjectWithTag ("KillingFloor");
-
-		ph = gameObject.GetComponent<PlayerHealth> ();
-
+		lives        = PlayerPrefs.GetInt ("Lifes",3);
+		killFloor    = GameObject.FindGameObjectWithTag ("KillingFloor");
+		ph           = gameObject.GetComponent<PlayerHealth> ();
 	}
 
-	// Update is called once per frame
-	void Update () {
-		//thisRigidbody.velocity=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, thisRigidbody.velocity.y,Input.GetAxis("Vertical")*moveSpeed);
-
+	private void Update () {
 		string[] names = Input.GetJoystickNames();
-		for(int x = 0; x < names.Length; x++)
+
+		for(int x = 0; x < names.Length; ++x)
 		{
 			if (names[x].Length == 19)
 			{
@@ -80,9 +71,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
-
-		//moveDirection=new Vector3(Input.GetAxis("Horizontal")*moveSpeed, moveDirection.y,Input.GetAxis("Vertical")*moveSpeed);
-		float yAux=moveDirection.y;
+		float yAux = moveDirection.y;
 		if (!isWalljumping && !anim.GetCurrentAnimatorStateInfo (0).IsName ("Falling Flat Impact")) {
 			if (ps4Controller)
 			{
@@ -290,8 +279,18 @@ public class PlayerController : MonoBehaviour {
 			}
 		}
 
+        float pushPower = 6.0F;
 
-	}
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body == null || body.isKinematic)
+            return;
+
+        if (hit.moveDirection.y < -0.3F)
+            return;
+
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+        body.velocity = pushDir * pushPower;
+    }
 
 	void OnCollisionExit(Collision collisionInfo) {
 		Debug.Log("No longer in contact with " + collisionInfo.transform.name);

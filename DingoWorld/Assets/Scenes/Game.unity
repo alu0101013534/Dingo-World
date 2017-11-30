@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -77,17 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -425,7 +423,7 @@ Prefab:
     - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
         type: 2}
       propertyPath: platforms.Array.size
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4238287541550842, guid: 674dae26133b65d4094859a49237aa11, type: 2}
       propertyPath: m_LocalPosition.x
@@ -478,12 +476,34 @@ Prefab:
     - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
         type: 2}
       propertyPath: platforms.Array.data[7].probability
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
         type: 2}
       propertyPath: platforms.Array.data[0].probability
-      value: 0.5
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
+        type: 2}
+      propertyPath: platforms.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 1012987440593964, guid: 2849264fd6669d143aa6e0894fa94e35,
+        type: 2}
+    - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
+        type: 2}
+      propertyPath: platforms.Array.data[8].probability
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
+        type: 2}
+      propertyPath: platforms.Array.data[9].prefab
+      value: 
+      objectReference: {fileID: 1414621385573254, guid: 87ef3a8c0ccb37b448f6368a28778aaa,
+        type: 2}
+    - target: {fileID: 114619521124508808, guid: 674dae26133b65d4094859a49237aa11,
+        type: 2}
+      propertyPath: platforms.Array.data[9].probability
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 674dae26133b65d4094859a49237aa11, type: 2}

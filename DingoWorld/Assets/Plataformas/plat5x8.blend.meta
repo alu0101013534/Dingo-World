@@ -1,22 +1,34 @@
 fileFormatVersion: 2
-guid: 74268715e5700ab46b4db2142751f43e
-timeCreated: 1511977222
+guid: de60fbc66b3307d418c098e5ebf16554
+timeCreated: 1512072563
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: Cylinder001
-    100002: Object004
-    100004: //RootNode
-    400000: Cylinder001
-    400002: Object004
-    400004: //RootNode
-    2300000: Cylinder001
-    2300002: Object004
-    3300000: Cylinder001
-    3300002: Object004
-    4300000: Cylinder001
-    4300002: Object004
+    100000: Ball
+    100002: Ball_001
+    100004: Ball_002
+    100006: Base
+    100008: //RootNode
+    400000: Ball
+    400002: Ball_001
+    400004: Ball_002
+    400006: Base
+    400008: //RootNode
+    2300000: Ball
+    2300002: Ball_001
+    2300004: Ball_002
+    2300006: Base
+    3300000: Ball
+    3300002: Ball_001
+    3300004: Ball_002
+    3300006: Base
+    4300000: Ball
+    4300002: Ball_002
+    4300004: Ball_001
+    4300006: Base
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -86,7 +98,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

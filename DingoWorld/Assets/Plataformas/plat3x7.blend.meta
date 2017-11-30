@@ -1,22 +1,59 @@
 fileFormatVersion: 2
-guid: 49365d2e4e660a1479bb66c413063cb8
-timeCreated: 1511977222
+guid: 34c36dad114362341b9df1ce6127d84e
+timeCreated: 1512072558
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: Object006
-    100002: //RootNode
-    100004: TreeVar01M
-    400000: Object006
-    400002: //RootNode
-    400004: TreeVar01M
-    2300000: Object006
-    2300002: TreeVar01M
-    3300000: Object006
-    3300002: TreeVar01M
-    4300000: Object006
-    4300002: TreeVar01M
+    100000: gear1
+    100002: gear2
+    100004: gear3
+    100006: gear4
+    100008: Plane
+    100010: //RootNode
+    100012: rotator1
+    100014: rotator2
+    100016: sides
+    100018: smallGear
+    400000: gear1
+    400002: gear2
+    400004: gear3
+    400006: gear4
+    400008: Plane
+    400010: //RootNode
+    400012: rotator1
+    400014: rotator2
+    400016: sides
+    400018: smallGear
+    2300000: gear1
+    2300002: gear2
+    2300004: gear3
+    2300006: gear4
+    2300008: Plane
+    2300010: rotator1
+    2300012: rotator2
+    2300014: sides
+    2300016: smallGear
+    3300000: gear1
+    3300002: gear2
+    3300004: gear3
+    3300006: gear4
+    3300008: Plane
+    3300010: rotator1
+    3300012: rotator2
+    3300014: sides
+    3300016: smallGear
+    4300000: Plane
+    4300002: gear4
+    4300004: gear3
+    4300006: rotator2
+    4300008: rotator1
+    4300010: gear2
+    4300012: smallGear
+    4300014: gear1
+    4300016: sides
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -86,7 +123,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

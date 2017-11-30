@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StickPlatform : MonoBehaviour {
+public class stickPlatform : MonoBehaviour {
 
 
 	public GameObject player;

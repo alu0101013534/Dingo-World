@@ -148,6 +148,8 @@
     <Compile Include="Assets\Scripts\platforms\plat15x15A_collision.cs" />
     <Compile Include="Assets\Scripts\platforms\plat15x15A_controller.cs" />
     <Compile Include="Assets\Scripts\platforms\plat15x15B_controller.cs" />
+    <Compile Include="Assets\Scripts\platforms\plat7x21Controller.cs" />
+    <Compile Include="Assets\Scripts\platforms\randomizator.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SettingsManager.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />

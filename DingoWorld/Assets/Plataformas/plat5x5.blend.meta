@@ -1,17 +1,24 @@
 fileFormatVersion: 2
-guid: 576be06e133b4084f98d5dcf20720ea3
-timeCreated: 1511977222
+guid: 41e11805d5d72ba4ebbb5b0b51564182
+timeCreated: 1512072560
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: Sphere001
-    400000: //RootNode
-    400002: Sphere001
-    2300000: Sphere001
-    3300000: Sphere001
-    4300000: Sphere001
+    100000: Base
+    100002: Boolean
+    100004: //RootNode
+    400000: Base
+    400002: Boolean
+    400004: //RootNode
+    2300000: Base
+    2300002: Boolean
+    3300000: Base
+    3300002: Boolean
+    4300000: Boolean
+    4300002: Base
+    7400000: Default Take
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -81,7 +88,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
