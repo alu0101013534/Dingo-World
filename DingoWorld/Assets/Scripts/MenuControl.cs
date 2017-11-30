@@ -85,9 +85,9 @@ public class MenuControl : MonoBehaviour {
 	}
 
 
-	public void About(){
+	public void Quit(){
 
-
+		Application.Quit();
 
 	}
 

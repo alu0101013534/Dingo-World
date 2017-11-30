@@ -1,6 +1,6 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\VideoController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuControl.cs">
     <Files>
       <File FileName="Assets\GameOverManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\OrbPickUp.cs" Line="1" Column="1" />
@@ -14,8 +14,9 @@
       <File FileName="Assets\Bomb.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\SettingsManager.cs" Line="1" Column="1" />
       <File FileName="Assets\BossCol.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\VideoController.cs" Line="53" Column="1" />
-      <File FileName="Assets\Scripts\MenuControl.cs" Line="59" Column="35" />
+      <File FileName="Assets\Scripts\VideoController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuControl.cs" Line="90" Column="22" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="157" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
