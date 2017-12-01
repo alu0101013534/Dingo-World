@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour {
 		LabelCoins.text=Coins+"/"+totalCoins;
 		Diamonds = PlayerPrefs.GetInt ("Score", 0);
 		lvl = Application.loadedLevel;
+
+
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -56,12 +59,15 @@ public class GameManager : MonoBehaviour {
 			PausePanel.SetActive (IsPaused);
 
 			if (IsPaused) {
-			
+
+				Cursor.lockState = CursorLockMode.None;
 				Time.timeScale = 0f;
 			} 
 			else {
 
 				Time.timeScale = 1f;
+
+				Cursor.lockState = CursorLockMode.Locked;
 			
 			}
 		

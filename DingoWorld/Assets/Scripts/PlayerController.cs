@@ -98,6 +98,7 @@ public class PlayerController : MonoBehaviour {
 
 
 
+
 				if ( (Mathf.Abs (controller.velocity.x) == 0 && Mathf.Abs (controller.velocity.z) == 0)) {
 					nJump = 1;
 				} 
