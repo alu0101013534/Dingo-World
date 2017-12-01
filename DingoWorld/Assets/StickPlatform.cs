@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class stickPlatform : MonoBehaviour {
+public class StickPlatform : MonoBehaviour {
 
 
-	public GameObject player;
+    private GameObject player;
 	// Use this for initialization
 	void Start () {
 
