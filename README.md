@@ -8,7 +8,12 @@ Dingo World es un juego de plataformas, que se caracteriza por tener que caminar
 ## Descripción del Juego
 Dingo el protagonista del juego, paseaba por el bosque llevando comida para su familia y se consigue una caja peculiar, solamente al recogerla, esta abre un portal absorbiendo a Dingo, mientras es transportado oye una voz de un hechicero anciano diciendo "Bienvenido a la prueba de los reflejos. Si queréis escapar tenéis que conseguir los diamantes para lograr salir... No obstante no te dejare las cosas fáciles ha ha ha ha!". Dingo se despierta en un lugar atemporal donde existen terrenos y obstáculos flotantes convocados con la magia del temible y misterioso hechicero. Es hora de probar tus reflejos, coordinación y toma de decisiones para lograr salvar a Dingo y este pueda volver a casa con la comida que se esperaba que trajera.
 
+## Enlaces para descargar el juego
 
-## Links de descarga 
+Hemos Generado ejecutables para las siguientes plataformas:
 
-Coming Soon
+Windows: [Descarga aqui](https://drive.google.com/file/d/0Bx6NqVGebfJDc1JWTjJtWGRXQm8/view?usp=sharing)
+
+Linux: [Descarga aqui](https://drive.google.com/file/d/0Bx6NqVGebfJDZjlndFNEQWZaNkE/view?usp=sharing) 
+
+OS X: [Descarga aqui](https://drive.google.com/file/d/0Bx6NqVGebfJDZjFqRkRfQ2NaNzA/view?usp=sharing)
