@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour {
 			invertGrav = gravity * airTime;
 			if ((Input.GetButtonDown("PS4_X") || Input.GetButtonDown("Jump") )&& !isDiamondCollected){
 
-				SoundManager.instance.PlayingSound("Jump");
+
 
 
 				if ( (Mathf.Abs (controller.velocity.x) == 0 && Mathf.Abs (controller.velocity.z) == 0)) {
