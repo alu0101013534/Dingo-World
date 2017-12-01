@@ -13,9 +13,11 @@ Dingo el protagonista del juego, paseaba por el bosque llevando comida para su f
 Hemos Generado ejecutables para las siguientes plataformas:
 
 Windows 64 bits: [Descarga aqui](https://drive.google.com/open?id=1CbSW5kij2LiILyHe2Y0J2eOgypWqgxFI)
+
 Windows 32 bits: [Descarga aqui](https://drive.google.com/open?id=1ULtAQUD1XxjdjNFvHzGt0TTOqjyFC9z4)
 
 Linux 64 bits: [Descarga aqui](https://drive.google.com/open?id=1bclj3DtyX7Q2o3E4_0Nckcf9A6uOpjld) 
+
 Linux 32 bits: [Descarga aqui](https://drive.google.com/open?id=1DcY9_1tAJs_Q-jJ8jRLUZD-eLQigZCG1) 
 
 OS X: [Descarga aqui](https://drive.google.com/open?id=1Md3Tt9GwF08S0K3as7taQBUmN61lvJGR)
