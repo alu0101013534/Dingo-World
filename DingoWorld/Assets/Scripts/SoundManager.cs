@@ -20,35 +20,22 @@ public class SoundManager : MonoBehaviour {
     private int lvl;
 	private bool isFxEnabled;
     public  AudioSource bgmSound;
-    
 	
 	public List<SoundGroup> sound_List = new List<SoundGroup>();
 	
 	public static SoundManager instance;
 	
-    
 	public void Start(){
 		instance = this;
         bgmSound.volume = PlayerPrefs.GetFloat("Musica");
         
 		camera = GameObject.FindGameObjectWithTag ("MainCamera");
-		if(PlayerPrefs.GetInt("isMusicEnabled",1)==1)
-		{
+		if(PlayerPrefs.GetInt("isMusicEnabled", 1) == 1)
 			Play();
-		}
 		else
-		{
 			Stop();
-		}
 
-		if(PlayerPrefs.GetInt("isSoundFxEnabled",1)==1)
-		{
-			isFxEnabled = true;
-		}
-		else
-		{
-			isFxEnabled=false;
-		}
+		isFxEnabled = PlayerPrefs.GetInt("isSoundFxEnabled", 1) == 1;
         //StartCoroutine(StartBGM());
     }
 
@@ -58,38 +45,34 @@ public class SoundManager : MonoBehaviour {
     }
 
     public void Play(){
-
-
         lvl = PlayerPrefs.GetInt("Level",1);
-      //  bgmSound.Stop();
+        //bgmSound.Stop();
         bgmSound.Play();
-
 	}
+
 	public void Stop(){
-
 		bgmSound.Stop();
-		
 	}
+
     public void PlayUI()
     {
 		bgmSound.Play();
-
     }
+
     public void StopUI()
     {
-
-
 		bgmSound.Stop();
-
     }
-    public void PlayingSound(string _soundName){
-	
+
+    public void PlayingSound(string _soundName)
+    {
 		if (isFxEnabled) {
 			AudioSource.PlayClipAtPoint (sound_List [FindSound (_soundName)].audioClip, camera.transform.position);
 		}
 	}
 	
-	private int FindSound(string _soundName){
+	private int FindSound(string _soundName)
+    {
 		int i = 0;
 		while( i < sound_List.Count ){
 			if(sound_List[i].soundName == _soundName){
@@ -109,13 +92,11 @@ public class SoundManager : MonoBehaviour {
 	IEnumerator StartBGM()
 	{
 		yield return new WaitForSeconds(0.5f);
-		
-	/*	while(PatternSystem.instance.loadingComplete == false)
+	    /*while(PatternSystem.instance.loadingComplete == false)
 		{
 			yield return 0;
 		}*/
-		
-		Debug.Log("play");
+		//Debug.Log("play");
 		bgmSound.Play();
 	}
 	

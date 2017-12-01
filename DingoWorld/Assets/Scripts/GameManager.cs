@@ -21,145 +21,122 @@ public class GameManager : MonoBehaviour {
 	private int previousTotalCoins;
 
 	private int lvl;
-	// Use this for initialization
-	void Start () {
-		
-		pc=	GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController> ();
 
-		//totalCoins=GameObject.FindGameObjectsWithTag ("Coins").Length;
+    private void Start ()
+    {
+		pc =	GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController> ();
 
-		LabelCoins.text=Coins+"/"+totalCoins;
-		Diamonds = PlayerPrefs.GetInt ("Score", 0);
+		LabelCoins.text = Coins + "/"  +totalCoins;
+		Diamonds = PlayerPrefs.GetInt("Score", 0);
 		lvl = Application.loadedLevel;
-
 
 		Cursor.lockState = CursorLockMode.Locked;
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-
+    private void Update () {
 
 		if(!found)
-			totalCoins=GameObject.FindGameObjectsWithTag ("Coins").Length;
+			totalCoins = GameObject.FindGameObjectsWithTag("Coins").Length;
 
-		if (!found && previousTotalCoins != totalCoins) {
+		if (!found && previousTotalCoins != totalCoins)
+        {
 			previousTotalCoins = totalCoins;
-		} else {
+		}
+        else
+        {
 			found = true;
-
-			LabelCoins.text=Coins+"/"+totalCoins;
-
+			LabelCoins.text = Coins + "/" + totalCoins;
 		}
 
-		if (Input.GetKeyDown (KeyCode.Escape) && SettingsPanel.activeSelf == false) {
-		
+		if (Input.GetKeyDown(KeyCode.Escape) && (SettingsPanel.activeSelf == false))
+        {
 			IsPaused = !IsPaused;
 			PausePanel.SetActive (IsPaused);
 
-			if (IsPaused) {
-
+			if (IsPaused)
+            {
 				Cursor.lockState = CursorLockMode.None;
 				Time.timeScale = 0f;
 			} 
-			else {
-
+			else
+            {
 				Time.timeScale = 1f;
-
 				Cursor.lockState = CursorLockMode.Locked;
-			
 			}
-		
 		}
 
 
-		DiamondCollectedLabel.SetActive (pc.isDiamondCollected);
-
-
-		LabelLives.text=pc.lives.ToString();
-
-
-
-		LabelDiamonds.text=Diamonds.ToString();
-		
+		DiamondCollectedLabel.SetActive(pc.isDiamondCollected);
+		LabelLives.text = pc.lives.ToString();
+		LabelDiamonds.text = Diamonds.ToString();
 	}
 
-	public void AddCoins(int value){
+	public void AddCoins(int value)
+    {
 		Coins += value;
 
-		LabelCoins.text=Coins+"/"+totalCoins;
+		LabelCoins.text = Coins + "/" + totalCoins;
 
-		if (Coins == totalCoins) {
-			
+		if (Coins == totalCoins)
+        {
 			pc.addLive ();
 		}
-	
 	}
-	public void AddDiamonds(int value){
+
+	public void AddDiamonds(int value)
+    {
 		Diamonds += value;
-
-
 		LabelDiamonds.text=Diamonds.ToString();
-
 	}
 
-	public void GameOver(){
-
+	public void GameOver()
+    {
 		PlayerPrefs.SetInt ("Lifes", 3);
 		PlayerPrefs.SetInt ("Score", Diamonds);
-		Application.LoadLevel (4);
-	
+		Application.LoadLevel(4);
 	}
 
 
-	public void FinalDiamond(){
-	
-
+	public void FinalDiamond()
+    {
 		PlayerPrefs.SetInt ("Lifes", pc.lives);
 		PlayerPrefs.SetInt ("Score", Diamonds);
 
-		if (lvl == 2) {
+		if (lvl == 2)
+        {
 			Application.LoadLevel (3);
 		}
-		if (lvl == 3) {
-
+		if (lvl == 3)
+        {
 			Application.LoadLevel (2);
 		}
-		
 	}
 
-	public void Resume(){
-
+	public void Resume()
+    {
 		IsPaused = false;
 		PausePanel.SetActive (IsPaused);
-
 		Time.timeScale = 1f;
-
 	}
 
-	public void Options(){
-
+	public void Options()
+    {
         IsPaused = false;
         PausePanel.SetActive(IsPaused);
         Time.timeScale = 0f;
         SettingsPanel.SetActive (true);
-        
-
-
 	}
 
     public void ExitOptions()
     {
 		SettingsPanel.SetActive(false);
 		Time.timeScale = 1f;
-
 		FindObjectOfType<CameraController>().UpdatePrefs();
 		FindObjectOfType<SoundManager>().UpdateMusicVolume();
     }
 
-	public void Quit(){
-
+	public void Quit()
+    {
 		Application.LoadLevel (0);
 	}
 }

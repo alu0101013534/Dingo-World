@@ -9,36 +9,28 @@ public class OrbPickUp : MonoBehaviour {
 	public GameObject psGo;
 	bool collected;
 
-	// Use this for initialization
-	void Start () {
+    private void Start ()
+    {
 		gameObject.tag="Coins";
 		ps.Stop ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
+    private void Update ()
+    {
 		if (collected && !ps.isEmitting) {
 			Destroy (gameObject);
 		}
-		
 	}
 
-	private void OnTriggerEnter(Collider other){
-	
-	
+	private void OnTriggerEnter(Collider other)
+    {
 		if (!collected && other.tag == "Player") {
 			collected = true;
 			SoundManager.instance.PlayingSound("Coin");
 
 			FindObjectOfType<GameManager> ().AddCoins (value);
 			GetComponent<MeshRenderer>().enabled = false;
-
 			ps.Play ();
-			//Destroy (gameObject);
-		
 		}
-	
 	}
-
 }

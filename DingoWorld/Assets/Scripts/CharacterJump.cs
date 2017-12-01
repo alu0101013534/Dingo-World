@@ -13,52 +13,36 @@ public class CharacterJump : MonoBehaviour {
 	private bool holdingjump;
 	
 	public  float GroundCheckDistance = 1.1f;
+    public bool grounded = true;
 
-	
-    public bool grounded =true;
-	// Use this for initialization
-	void Start () {
+    private void Start () {
 		thisRigidbody = gameObject.GetComponent<Rigidbody>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-
+	private void Update ()
+    {
 		holdingjump = Input.GetButton("Jump");
-		
 		CheckGroundStatus();
 	}
 
 	void FixedUpdate()
 	{
-
-
-
-		checkFirstJump ();
-
-
+		checkFirstJump();
 	}
 
 
 	void checkFirstJump()
 	{
 		if (holdingjump)
-			thisRigidbody.velocity =new Vector3(thisRigidbody.velocity.x,  jumpVelocity,thisRigidbody.velocity.z);
+			thisRigidbody.velocity = new Vector3(thisRigidbody.velocity.x,  jumpVelocity,thisRigidbody.velocity.z);
 
 		if (thisRigidbody.velocity.y < 0 && !grounded && thisRigidbody.velocity.y !=0)
 		{ 
-
 			thisRigidbody.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
-
-			//thisRigidbody.velocity = new Vector3 (thisRigidbody.velocity.x, Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime, thisRigidbody.velocity.z);
-
 		}
 		else if (thisRigidbody.velocity.y > 0 && !holdingjump && !grounded && thisRigidbody.velocity.y !=0 )
 		{
-
 			thisRigidbody.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
-			//thisRigidbody.velocity = new Vector3 (thisRigidbody.velocity.x,  Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime, thisRigidbody.velocity.z);
-
 		}
 
 	}
@@ -66,19 +50,12 @@ public class CharacterJump : MonoBehaviour {
 	 void CheckGroundStatus()
     {
         RaycastHit hitInfo;
-#if UNITY_EDITOR
-        // helper to visualise the ground check ray in the scene view
-        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * GroundCheckDistance));
-#endif
+        #if UNITY_EDITOR
+            // helper to visualise the ground check ray in the scene view
+            Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * GroundCheckDistance));
+        #endif
         // 0.1f is a small offset to start the ray from inside the character
         // it is also good to note that the transform position in the sample assets is at the base of the character
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, GroundCheckDistance))
-        {
-            grounded = true;
-        }
-        else
-        {
-            grounded = false;
-        }
+        grounded = Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, GroundCheckDistance); // true or false
 	}
 }
